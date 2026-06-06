@@ -1,0 +1,6 @@
+{
+  "name": "Ikonex Academy",
+  "description": "Premium school administration dashboard featuring student profiles, GPA tracking, score recorders, class streams, and detailed report cards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

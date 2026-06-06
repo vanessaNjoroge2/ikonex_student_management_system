@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const subjects_controller_1 = require("./subjects.controller");
+const validate_1 = require("../../middleware/validate");
+const auth_1 = require("../../middleware/auth");
+const router = (0, express_1.Router)();
+router.use((0, auth_1.requireAuth)());
+router.get('/', subjects_controller_1.SubjectsController.list);
+router.get('/:id', subjects_controller_1.SubjectsController.get);
+router.post('/', (0, validate_1.validate)(subjects_controller_1.createSubjectSchema), subjects_controller_1.SubjectsController.create);
+router.put('/:id', (0, validate_1.validate)(subjects_controller_1.updateSubjectSchema), subjects_controller_1.SubjectsController.update);
+router.delete('/:id', subjects_controller_1.SubjectsController.delete);
+router.get('/:id/streams', subjects_controller_1.SubjectsController.getStreams);
+router.post('/:id/streams', (0, validate_1.validate)(subjects_controller_1.assignStreamSchema), subjects_controller_1.SubjectsController.assignStream);
+router.delete('/:id/streams/:streamId', subjects_controller_1.SubjectsController.unassignStream);
+exports.default = router;

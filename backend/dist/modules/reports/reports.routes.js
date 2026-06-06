@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const reports_controller_1 = require("./reports.controller");
+const auth_1 = require("../../middleware/auth");
+const router = (0, express_1.Router)();
+router.use((0, auth_1.requireAuth)());
+router.get('/student/:id', reports_controller_1.ReportsController.student);
+router.get('/class', reports_controller_1.ReportsController.classSummary);
+router.get('/stream-comparison', reports_controller_1.ReportsController.streamComparison);
+router.get('/grade-distribution', reports_controller_1.ReportsController.gradeDistribution);
+router.get('/top-performers', reports_controller_1.ReportsController.topPerformers);
+router.get('/term-trend', reports_controller_1.ReportsController.termTrend);
+exports.default = router;

@@ -7,32 +7,145 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Admin {
-  id           String   @id
-  email        String   @unique
-  passwordHash String
-  createdAt    DateTime @default(now())
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
 }
 
-model ContactMessage {
-  id        String   @id
-  name      String
-  email     String
-  subject   String
-  message   String
-  read      Boolean  @default(false)
+enum ExamType {
+  EXAM
+  CA
+}
+
+model prismaUser {
+  id                String   @id @default(uuid())
+  name              String
+  email             String   @unique
+  password          String
+  role              Role     @default(ADMIN)
+  createdAt         DateTime @default(now())
+  isVerified        Boolean  @default(false) @map("is_verified")
+  otpCode           String?  @map("otp_code")
+  otpExpires        DateTime? @map("otp_expires")
+  twoFactorCode     String?  @map("two_factor_code")
+  twoFactorExpires  DateTime? @map("two_factor_expires")
+  refreshToken      String?  @map("refresh_token")
+  isSuspended       Boolean  @default(false) @map("is_suspended")
+  students          Student[]
+  subjects          Subject[]
+  scores            Score[]
+  streams           Stream[]
+
+  @@map("Users")
+}
+
+model Stream {
+  id             String          @id
+  name           String
+  room           String
+  gradeLevel     String
+  type           String
+  trend          String          @default("Stable")
+  createdAt      DateTime        @default(now())
+  teacherId      String?         @map("teacher_id")
+  teacher        prismaUser?     @relation(fields: [teacherId], references: [id], onDelete: SetNull)
+  students       Student[]
+  subjectStreams SubjectStream[]
+}
+
+model Student {
+  id                   String   @id @default(uuid())
+  fullName             String   @map("full_name")
+  admissionNumber      String   @unique @map("admission_number")
+  gender               String
+  dateOfBirth          DateTime @map("date_of_birth")
+  nationality          String?  @default("Kenyan")
+  formLevel            String   @map("form_level") // "Form 1", "Form 2", "Form 3", "Form 4"
+  stream               String   // "A", "B", "C", "D"
+  kcpeScore            Float    @map("kcpe_score")
+  enrollmentStatus     String   @default("ACTIVE") @map("enrollment_status") // ACTIVE, INACTIVE, GRADUATED, SUSPENDED
+  admissionDate        DateTime @default(now()) @map("admission_date")
+  parentName           String   @map("parent_name")
+  relationship         String
+  parentPhone          String   @map("parent_phone")
+  altPhone             String?  @map("alt_phone")
+  attendancePercentage Float    @default(100.0) @map("attendance_percentage")
+  remarks              String?
+  image                String?
+  email                String?
+  isDeleted            Boolean  @default(false) @map("is_deleted")
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+  streamId             String   @map("stream_id")
+  streamRel            Stream   @relation(fields: [streamId], references: [id], onDelete: Cascade)
+  teacherId            String   @map("teacher_id")
+  teacher              prismaUser @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  scores               Score[]
+
+  @@index([admissionNumber])
+  @@index([formLevel])
+  @@index([stream])
+  @@index([enrollmentStatus])
+}
+
+model Subject {
+  id             String          @id
+  name           String          @unique
+  code           String
+  teacherName    String
+  createdAt      DateTime        @default(now())
+  teacherId      String          @map("teacher_id")
+  teacher        prismaUser      @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  subjectStreams SubjectStream[]
+  scores         Score[]
+}
+
+model SubjectStream {
+  id        String  @id @default(uuid())
+  subjectId String
+  streamId  String
+  subject   Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  stream    Stream  @relation(fields: [streamId], references: [id], onDelete: Cascade)
+
+  @@unique([subjectId, streamId])
+}
+
+model Score {
+  id        String   @id @default(uuid())
+  studentId String
+  subjectId String
+  examType  ExamType
+  term      String
+  year      Int
+  score     Float
+  maxScore  Float
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subject   Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  teacherId String   @map("teacher_id")
+  teacher   prismaUser @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, subjectId, examType, term, year])
 }
 
-model Project {
-  id          String   @id
-  title       String
-  description String
-  techStack   String[]
-  liveUrl     String?
-  repoUrl     String?
-  imageUrl    String?
-  featured    Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime
+model LoginActivity {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  email     String
+  name      String
+  role      Role
+  timestamp DateTime @default(now()) @map("timestamp")
+
+  @@map("LoginActivities")
+}
+
+model GradingScale {
+  id        String   @id @default(uuid())
+  letter    String   @unique
+  minScore  Float
+  status    String   @default("Pass")
+  remarks   String
+  createdAt DateTime @default(now())
 }

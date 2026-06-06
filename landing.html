@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ikonex Academy — School Administration, Finally Human</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --------------------------------------------------
+       CSS RESET & VARIABLES
+       -------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #3525cd;
+      --primary-hover: #4f46e5;
+      --light-accent: #dad7ff;
+      --bg: #F8F7F4;
+      --bg-card: #ffffff;
+      --text-primary: #0f172a;
+      --text-muted: #64748b;
+      --success: #10b981;
+      --border: #e2e8f0;
+      
+      --font-display: 'Fraunces', serif;
+      --font-sans: 'DM Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --------------------------------------------------
+       TYPOGRAPHY
+       -------------------------------------------------- */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--text-primary);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    /* --------------------------------------------------
+       UTILITY CLASSES
+       -------------------------------------------------- */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      border: 1px solid var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
+      transform: scale(1.02);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid transparent;
+      font-weight: 600;
+    }
+
+    .btn-ghost:hover {
+      color: var(--primary);
+    }
+
+    .btn-secondary-border {
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-secondary-border:hover {
+      background-color: rgba(53, 37, 205, 0.04);
+      transform: scale(1.02);
+    }
+
+    /* --------------------------------------------------
+       ANIMATIONS
+       -------------------------------------------------- */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --------------------------------------------------
+       NAVBAR
+       -------------------------------------------------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      z-index: 1000;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+    }
+
+    .navbar.scrolled {
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+      height: 70px;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-logo-icon {
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-name {
+      font-family: var(--font-sans);
+      font-size: 1.125rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--text-primary);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* --------------------------------------------------
+       HERO SECTION
+       -------------------------------------------------- */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 90px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-headline {
+      font-size: 3.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    .hero-subheading {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+    }
+
+    .hero-visual-wrapper {
+      position: relative;
+      padding: 20px;
+    }
+
+    /* Custom Dot Grid Pattern */
+    .hero-dot-grid {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80%;
+      height: 90%;
+      background-image: radial-gradient(var(--primary) 1.5px, transparent 1.5px);
+      background-size: 18px 18px;
+      opacity: 0.08;
+      z-index: 1;
+      border-radius: 24px;
+    }
+
+    /* Dashboard Mockup Card */
+    .hero-mockup {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      background: var(--bg-card);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+      transform: rotateX(4deg) rotateY(-8deg) rotateZ(2deg);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+      overflow: hidden;
+      aspect-ratio: 1.35;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-visual-wrapper:hover .hero-mockup {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.02);
+      box-shadow: 0 35px 60px -15px rgba(15, 23, 42, 0.15);
+    }
+
+    /* Mockup Inner Details */
+    .mockup-bar {
+      height: 44px;
+      background-color: #fafbfc;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 6px;
+    }
+
+    .mockup-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--border);
+    }
+
+    .mockup-dot.red { background-color: #f87171; }
+    .mockup-dot.yellow { background-color: #fbbf24; }
+    .mockup-dot.green { background-color: #34d399; }
+
+    .mockup-title {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-left: auto;
+      margin-right: auto;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mockup-body {
+      flex: 1;
+      padding: 24px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mockup-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .mockup-stat-card {
+      background: #fafbfc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .mockup-stat-title {
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .mockup-stat-val {
+      font-size: 1.25rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+
+    .mockup-stat-sub {
+      font-size: 0.625rem;
+      color: var(--success);
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .mockup-roster {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mockup-roster-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .mockup-roster-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .mockup-roster-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.6875rem;
+      background-color: #fafbfc;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    .mockup-avatar-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .mockup-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--light-accent);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      font-weight: 800;
+    }
+
+    /* --------------------------------------------------
+       TRUST BAR
+       -------------------------------------------------- */
+    .trustbar {
+      padding: 40px 0;
+      background-color: #ffffff;
+      border-top: 1px solid rgba(15, 23, 42, 0.05);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+      text-align: center;
+    }
+
+    .trust-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .trust-pills {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+    }
+
+    .trust-pill {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .trust-pill:hover {
+      color: var(--primary);
+      border-color: var(--light-accent);
+      background-color: #ffffff;
+    }
+
+    /* --------------------------------------------------
+       PROBLEM vs SOLUTION BLOCK
+       -------------------------------------------------- */
+    .compare-section {
+      padding: 100px 0;
+      background-color: var(--bg);
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: stretch;
+    }
+
+    .compare-col {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.01);
+    }
+
+    .compare-col.solution {
+      background-color: #f0effe;
+      border-color: var(--light-accent);
+    }
+
+    .compare-header {
+      margin-bottom: 36px;
+    }
+
+    .compare-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .compare-col.solution .compare-tag {
+      color: var(--primary);
+    }
+
+    .compare-title {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 12px;
+    }
+
+    .compare-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .compare-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 900;
+      font-size: 0.75rem;
+    }
+
+    .compare-col.solution .compare-icon {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .compare-col:not(.solution) .compare-icon {
+      background-color: #fee2e2;
+      color: #ef4444;
+      font-size: 0.875rem;
+    }
+
+    .compare-item-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .compare-item-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* --------------------------------------------------
+       SYSTEM CORE MODULES (BENTO GRID)
+       -------------------------------------------------- */
+    .features {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .features-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    .features-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .features-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .features-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-left: 4px solid transparent;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px rgba(15, 23, 42, 0.04);
+      border-left-color: var(--primary);
+    }
+
+    /* Asymmetric Bento Spanning */
+    .bento-card.span-2 {
+      grid-column: span 2;
+    }
+
+    .bento-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: var(--light-accent);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      transition: transform 0.3s ease;
+    }
+
+    .bento-card:hover .bento-icon-wrapper {
+      transform: scale(1.05);
+    }
+
+    .bento-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .bento-card-desc {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* --------------------------------------------------
+       HOW IT WORKS
+       -------------------------------------------------- */
+    .steps {
+      padding: 100px 0;
+      background-color: var(--bg);
+    }
+
+    .steps-container {
+      position: relative;
+      margin-top: 40px;
+    }
+
+    .steps-line {
+      position: absolute;
+      top: 32px;
+      left: 16%;
+      right: 16%;
+      height: 2px;
+      border-top: 2px dashed var(--border);
+      z-index: 1;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-card {
+      text-align: center;
+    }
+
+    .step-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-weight: 800;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .step-card.completed .step-circle {
+      background-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(53, 37, 205, 0.2);
+    }
+
+    .step-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .step-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    /* --------------------------------------------------
+       STATS ROW
+       -------------------------------------------------- */
+    .stats {
+      padding: 80px 0;
+      background-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 3.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .stat-label {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--light-accent);
+      letter-spacing: 0.05em;
+    }
+
+    /* --------------------------------------------------
+       TESTIMONIAL
+       -------------------------------------------------- */
+    .testimonial {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .testimonial-card {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 64px 48px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.01);
+    }
+
+    .testimonial-quote-bg {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: 11rem;
+      color: var(--light-accent);
+      line-height: 1;
+      opacity: 0.35;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 1.625rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text-primary);
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--light-accent);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.875rem;
+      margin: 0 auto 12px;
+      border: 2px solid #ffffff;
+    }
+
+    .testimonial-name {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .testimonial-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* --------------------------------------------------
+       FINAL CTA SECTION
+       -------------------------------------------------- */
+    .final-cta {
+      padding: 100px 0;
+      background-color: var(--bg);
+      text-align: center;
+    }
+
+    .final-cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .final-cta-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .final-cta-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    .final-cta-btn {
+      padding: 16px 36px;
+      font-size: 1rem;
+    }
+
+    .final-cta-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+      font-weight: 500;
+    }
+
+    /* --------------------------------------------------
+       FOOTER
+       -------------------------------------------------- */
+    .footer {
+      background-color: #0D1B4B;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 80px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand {
+      max-width: 300px;
+    }
+
+    .footer-brand .brand {
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand .brand-logo-icon {
+      color: var(--light-accent);
+    }
+
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
+    }
+
+    .footer-col-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.8125rem;
+    }
+
+    .footer-copyright {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-badge {
+      font-weight: 700;
+      color: var(--light-accent);
+    }
+
+    /* --------------------------------------------------
+       RESPONSIVE MEDIA QUERIES
+       -------------------------------------------------- */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual-wrapper {
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-card.span-2 {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        height: 70px;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bg);
+        flex-direction: column;
+        padding: 40px 24px;
+        gap: 24px;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 999;
+      }
+
+      .nav-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-actions {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .hero {
+        padding-top: 120px;
+        padding-bottom: 60px;
+      }
+
+      .hero-headline {
+        font-size: 2.5rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .compare-col {
+        padding: 30px;
+      }
+
+      .compare-title {
+        font-size: 1.75rem;
+      }
+
+      .steps-line {
+        display: none;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+      }
+
+      .testimonial-card {
+        padding: 40px 24px;
+      }
+
+      .testimonial-quote {
+        font-size: 1.25rem;
+      }
+
+      .final-cta-title {
+        font-size: 2.25rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand">
+        <span class="brand-logo-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+        </span>
+        <span class="brand-name">Ikonex Academy</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#modules" class="nav-link">Modules</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <!-- Mobile Actions -->
+        <li style="margin-top: 24px; width: 100%; text-align: center;" class="mobile-only">
+          <a href="/login" class="btn btn-ghost" style="width: 100%; margin-bottom: 12px;">Sign In</a>
+          <a href="/register" class="btn btn-primary" style="width: 100%;">Get Started</a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/login" class="btn btn-ghost">Sign In</a>
+        <a href="/register" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content fade-in-up">
+        <h1 class="hero-headline">
+          Streamline School Education with <span style="font-family: var(--font-display); font-style: italic; font-weight: 550; color: var(--primary);">Precision.</span>
+        </h1>
+        <p class="hero-subheading">
+          Ikonex Academy brings students, teachers, streams, and reports into one place — so you can focus on what matters: education.
+        </p>
+        <div class="hero-actions">
+          <a href="/register" class="btn btn-primary">Get Started Free →</a>
+          <a href="/login" class="btn btn-secondary-border">Watch Demo</a>
+        </div>
+      </div>
+      
+      <div class="hero-visual-wrapper fade-in-up">
+        <div class="hero-dot-grid"></div>
+        <div class="hero-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-window-controls">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            <div class="mockup-title">Principal Registry Portal</div>
+            <div style="width: 34px;"></div>
+          </div>
+          
+          <div class="mockup-body">
+            <div class="mockup-stats">
+              <div class="mockup-stat-card">
+                <span class="mockup-stat-title">Enrolled</span>
+                <span class="mockup-stat-val block">1,248</span>
+                <span class="mockup-stat-sub block">+4.2%</span>
+              </div>
+              <div class="mockup-stat-card">
+                <span class="mockup-stat-title">Attendance</span>
+                <span class="mockup-stat-val block">96.8%</span>
+                <span class="mockup-stat-sub block" style="color: var(--success);">Excellent</span>
+              </div>
+              <div class="mockup-stat-card">
+                <span class="mockup-stat-title">Top Stream</span>
+                <span class="mockup-stat-val block">Form 4A</span>
+                <span class="mockup-stat-sub block" style="color: var(--primary);">84.2% Mean</span>
+              </div>
+            </div>
+            
+            <div class="mockup-roster">
+              <div class="mockup-roster-header">
+                <strong>Active Stream roster</strong>
+                <span style="color: var(--primary); font-weight: 700; font-size: 0.625rem;">Form 4A</span>
+              </div>
+              <div class="mockup-roster-rows">
+                <div class="mockup-roster-row">
+                  <div class="mockup-avatar-wrapper">
+                    <div class="mockup-avatar">VN</div>
+                    <span>Vanessa Njoroge</span>
+                  </div>
+                  <span style="color: var(--text-muted); font-family: monospace;">#002</span>
+                </div>
+                <div class="mockup-roster-row">
+                  <div class="mockup-avatar-wrapper">
+                    <div class="mockup-avatar" style="background-color: rgba(16, 185, 129, 0.1); color: var(--success);">AM</div>
+                    <span>Alan Mwangi</span>
+                  </div>
+                  <span style="color: var(--text-muted); font-family: monospace;">#018</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trustbar">
+    <div class="container">
+      <div class="trust-title">Trusted by administrators across East Africa</div>
+      <div class="trust-pills">
+        <span class="trust-pill">Alliance High School</span>
+        <span class="trust-pill">Loreto Limuru</span>
+        <span class="trust-pill">Hillcrest International</span>
+        <span class="trust-pill">Strathmore Academy</span>
+        <span class="trust-pill">St. Scholastica</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM vs SOLUTION BLOCK -->
+  <section class="compare-section" id="features">
+    <div class="container compare-grid">
+      <!-- Left: The Old Way -->
+      <div class="compare-col fade-in-up">
+        <div class="compare-header">
+          <span class="compare-tag" style="color: #ef4444;">The Old Way</span>
+          <h2 class="compare-title">Administrative Friction</h2>
+        </div>
+        
+        <ul class="compare-list">
+          <li class="compare-item">
+            <div class="compare-icon">✗</div>
+            <div>
+              <h4 class="compare-item-title">Manual Register Logs</h4>
+              <p class="compare-item-desc">Attendance rosters and class registers compiled physically on paper logs. High error margin and frequent data loss.</p>
+            </div>
+          </li>
+          <li class="compare-item">
+            <div class="compare-icon">✗</div>
+            <div>
+              <h4 class="compare-item-title">Scattered Grade Spreadsheets</h4>
+              <p class="compare-item-desc">Scores entered across different USB drives. Recalculating stream positioning averages takes days of formulas.</p>
+            </div>
+          </li>
+          <li class="compare-item">
+            <div class="compare-icon">✗</div>
+            <div>
+              <h4 class="compare-item-title">Delayed End-of-Term Reports</h4>
+              <p class="compare-item-desc">Teachers spend weeks handwriting remarks and compiling marks instead of prepping curriculum modules.</p>
+            </div>
+          </li>
+        </ul>
+        <div></div>
+      </div>
+
+      <!-- Right: The Ikonex Way -->
+      <div class="compare-col solution fade-in-up">
+        <div class="compare-header">
+          <span class="compare-tag">The Ikonex Way</span>
+          <h2 class="compare-title">Seamless Coordination</h2>
+        </div>
+        
+        <ul class="compare-list">
+          <li class="compare-item">
+            <div class="compare-icon">✓</div>
+            <div>
+              <h4 class="compare-item-title">Integrated Digital Rosters</h4>
+              <p class="compare-item-desc">Pupils logged securely. Easily search biographical files, trace class stream allocations, and monitor enrollments in real time.</p>
+            </div>
+          </li>
+          <li class="compare-item">
+            <div class="compare-icon">✓</div>
+            <div>
+              <h4 class="compare-item-title">Instant Performance Matrices</h4>
+              <p class="compare-item-desc">Input marks with automatic limit constraints. System auto-calculates stream positioning ranks and overall positioning.</p>
+            </div>
+          </li>
+          <li class="compare-item">
+            <div class="compare-icon">✓</div>
+            <div>
+              <h4 class="compare-item-title">Single-Click PDF Transcripts</h4>
+              <p class="compare-item-desc">Compile clean academic transcripts and stream averages instantly. Export certified, layout-perfect PDF reports ready to print.</p>
+            </div>
+          </li>
+        </ul>
+        <div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEM CORE MODULES (BENTO GRID) -->
+  <section class="features" id="modules">
+    <div class="container">
+      <div class="features-header fade-in-up">
+        <span class="features-tag">Platform Modules</span>
+        <h2 class="features-title">Everything your school needs, in one place.</h2>
+        <p class="features-desc">Engineered for academic managers. Configure grading scales, organize streams, and export reports in a clean, unified dashboard.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Student Management (Spans 2 columns on desktop) -->
+        <div class="bento-card span-2 fade-in-up">
+          <div class="bento-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3 class="bento-card-title">Student Management</h3>
+          <p class="bento-card-desc">Enroll new candidates, catalog biographical profiles, track gender allocations, and record interests. Easily manage dynamic student directories without complex spreadsheets.</p>
+        </div>
+
+        <!-- Performance Tracking -->
+        <div class="bento-card fade-in-up">
+          <div class="bento-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+          </div>
+          <h3 class="bento-card-title">Performance Tracking</h3>
+          <p class="bento-card-desc">Log score sheets for coursework assessments and terminal exams. Automatically check inputs against maximum score limits to prevent errors.</p>
+        </div>
+
+        <!-- Stream Management -->
+        <div class="bento-card fade-in-up">
+          <div class="bento-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          </div>
+          <h3 class="bento-card-title">Stream Management</h3>
+          <p class="bento-card-desc">Group classrooms into streams, trace student enrollment capacities, assign dedicated class teachers, and set up dynamic grading configurations.</p>
+        </div>
+
+        <!-- Report Generation (Spans 2 columns on desktop) -->
+        <div class="bento-card span-2 fade-in-up">
+          <div class="bento-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </div>
+          <h3 class="bento-card-title">Report Generation</h3>
+          <p class="bento-card-desc">Compile complete student performance briefs, review overall class summaries, and export beautifully aligned PDF report cards. Eliminate clerical math issues instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="steps" id="how-it-works">
+    <div class="container steps-container">
+      <div class="features-header fade-in-up">
+        <span class="features-tag">Setup Pipeline</span>
+        <h2 class="features-title">How It Works</h2>
+        <p class="features-desc">Onboard your administrative team and modernize your system in minutes.</p>
+      </div>
+
+      <div class="steps-line"></div>
+
+      <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="step-card fade-in-up">
+          <div class="step-circle">1</div>
+          <h3 class="step-title">Register</h3>
+          <p class="step-desc">Create your administrator account and secure your school registry credentials.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card fade-in-up">
+          <div class="step-circle">2</div>
+          <h3 class="step-title">Add Students & Streams</h3>
+          <p class="step-desc">Upload student enrollment rosters and structure classroom levels and stream capacities.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card completed fade-in-up">
+          <div class="step-circle">3</div>
+          <h3 class="step-title">Track Performance</h3>
+          <p class="step-desc">Input score records, review instant averages, and generate certified PDF transcripts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS ROW -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat-item fade-in-up">
+        <div class="stat-number">10,000+</div>
+        <div class="stat-label">Students Tracked</div>
+      </div>
+      <div class="stat-item fade-in-up">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Schools Onboarded</div>
+      </div>
+      <div class="stat-item fade-in-up">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Admin Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial">
+    <div class="container">
+      <div class="testimonial-card fade-in-up">
+        <div class="testimonial-quote-bg">“</div>
+        <blockquote class="testimonial-quote">
+          "Since switching to Ikonex, our end-of-term reporting takes hours instead of weeks. It's transformed how we run our school."
+        </blockquote>
+        <div class="testimonial-avatar">SC</div>
+        <div class="testimonial-name">Sister Mary Claire</div>
+        <div class="testimonial-title">Principal, St. Scholastica Academy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA SECTION -->
+  <section class="final-cta" id="contact">
+    <div class="container final-cta-content fade-in-up">
+      <h2 class="final-cta-title">Ready to transform your school?</h2>
+      <p class="final-cta-desc">Modernize your class streams, student tracking, and transcript compiles instantly.</p>
+      <a href="/register" class="btn btn-primary final-cta-btn">Get Started Free →</a>
+      <div class="final-cta-note">No credit card required · Set up in minutes.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="brand">
+            <span class="brand-logo-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+            </span>
+            <span class="brand-name">Ikonex Academy</span>
+          </a>
+          <p class="footer-tagline">
+            A next-generation school administration platform built to simplify student directories, grading thresholds, and term analytics.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="footer-col-title">Product</h4>
+          <ul class="footer-links">
+            <li><a href="#features" class="footer-link">Features</a></li>
+            <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
+            <li><a href="#modules" class="footer-link">Modules</a></li>
+            <li><a href="/login" class="footer-link">Sign In</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Contact Support</a></li>
+            <li><a href="#" class="footer-link">Status Page</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2026 Ikonex Academy. All rights reserved.
+        </div>
+        <div class="footer-badge">
+          Made for East African Schools
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll handler
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile navigation drawer toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+
+    // Dismiss drawer on link clicking
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    // Fade-in scroll animations using IntersectionObserver
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.fade-in-up');
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
