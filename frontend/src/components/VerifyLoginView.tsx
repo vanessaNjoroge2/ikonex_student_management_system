@@ -94,6 +94,11 @@ export default function VerifyLoginView({ onLogin }: VerifyLoginViewProps) {
         body: JSON.stringify({ email, code: fullCode }),
       });
 
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('API server returned an invalid response. Please check if the backend is running.');
+      }
+
       const result = await response.json();
 
       if (!response.ok || !result.success) {
@@ -140,6 +145,11 @@ export default function VerifyLoginView({ onLogin }: VerifyLoginViewProps) {
         },
         body: JSON.stringify({ email, password: tempPassword }),
       });
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('API server returned an invalid response. Please check if the backend is running.');
+      }
 
       const result = await response.json();
 

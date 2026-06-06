@@ -46,6 +46,10 @@ export default function LoginView({ onLogin }: LoginViewProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: forgotEmail })
       });
+      const contentType = res.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('API server returned an invalid response. Please check if the backend is running.');
+      }
       const data = await res.json();
       if (!res.ok || !data.success) {
         throw new Error(data.error?.message || 'Failed to send reset code.');
@@ -91,6 +95,10 @@ export default function LoginView({ onLogin }: LoginViewProps) {
           newPassword
         })
       });
+      const contentType = res.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('API server returned an invalid response. Please check if the backend is running.');
+      }
       const data = await res.json();
       if (!res.ok || !data.success) {
         throw new Error(data.error?.message || 'Failed to reset password.');
@@ -141,6 +149,11 @@ export default function LoginView({ onLogin }: LoginViewProps) {
         },
         body: JSON.stringify({ email, password }),
       });
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('API server returned an invalid response. Please check if the backend is running.');
+      }
 
       const result = await response.json();
 

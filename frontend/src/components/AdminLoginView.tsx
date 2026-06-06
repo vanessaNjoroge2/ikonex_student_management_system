@@ -42,6 +42,11 @@ export default function AdminLoginView({ onLogin }: AdminLoginViewProps) {
         body: JSON.stringify({ email, password }),
       });
 
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('API server returned an invalid response. Please check if the backend is running.');
+      }
+
       const result = await response.json();
 
       if (!response.ok || !result.success) {
