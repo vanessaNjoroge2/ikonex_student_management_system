@@ -148,6 +148,13 @@ npm run dev
 The frontend application will start on **http://localhost:5173** (or choose port 3000/3001 if selected).
 
 
+<<<<<<< Updated upstream
+=======
+## Authentication & Default Credentials
+
+All core endpoints (except auth routes) require requests to include an `Authorization` header containing the JWT token.
+
+>>>>>>> Stashed changes
 
 ## Grading Policy & Rules
 
