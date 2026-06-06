@@ -38,13 +38,14 @@ ikonex-student-management/
 │   │   ├── App.tsx                        # Main dashboard shell & navigation
 │   │   ├── data.ts                        # Local storage / mock data baseline
 │   │   ├── index.css                      # Global styles and tailwind directives
-│   │   ├── main.tsx                       # React application bootstrapper
-│   │   └── types.ts                       # Domain TypeScript interfaces
-│   ├── index.html                         # Entry HTML file
-│   ├── landing.html                       # Standalone rebuilt landing page HTML
-│   ├── package.json                       # Frontend scripts & dependencies
-│   └── vite.config.ts                     # Vite build and server config
-│
+    │   ├── main.tsx                       # React application bootstrapper
+    │   └── types.ts                       # Domain TypeScript interfaces
+    │   ├── public/                        # Static assets folder
+    │   │   └── landing.html               # Standalone rebuilt landing page HTML
+    │   ├── index.html                     # Entry HTML file
+    │   ├── package.json                   # Frontend scripts & dependencies
+    │   └── vite.config.ts                 # Vite build and server config
+    │
 ├── backend/                               # Express + TypeScript Server Application
 │   ├── prisma/
 │   │   ├── schema.prisma                  # Prisma ORM Database Models
@@ -147,14 +148,26 @@ npm run dev
 ```
 The frontend application will start on **http://localhost:5173** (or choose port 3000/3001 if selected).
 
+---
 
-<<<<<<< Updated upstream
-=======
 ## Authentication & Default Credentials
 
 All core endpoints (except auth routes) require requests to include an `Authorization` header containing the JWT token.
 
->>>>>>> Stashed changes
+```text
+Authorization: Bearer <your_access_token>
+```
+
+The database includes the following seeded accounts:
+
+| Name | Email / Username | Password | Role |
+| :--- | :--- | :--- | :--- |
+| **John Miller** | `j.miller@ikonex.edu` | `password123` | **ADMIN** |
+| **Sarah Jenkins** | `s.jenkins@ikonex.edu` | `password123` | **TEACHER** |
+| **Emily Bronte** | `e.bronte@ikonex.edu` | `password123` | **TEACHER** |
+| **Alan Turing** | `a.turing@ikonex.edu` | `password123` | **TEACHER** |
+
+---
 
 ## Grading Policy & Rules
 
