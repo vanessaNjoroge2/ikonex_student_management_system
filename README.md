@@ -8,6 +8,17 @@ The system is split into:
 
 ---
 
+## Key Features
+
+* **Class Stream Management**: Admin dashboard allows full management of school streams, classroom room allocations, and teacher assignments.
+* **Grading Scale Configuration**: System-wide dynamically configured grading thresholds (A+, A, B, etc.) that instantly recalculate report card grades and GPAs.
+* **Strict Score Entry Validation**: Zod-based score constraints checked at runtime and middleware levels to prevent input errors where `score > maxScore`.
+* **Relative Position & Rankings**: Auto-calculates subject-specific positions and overall class rankings for rosters and report cards.
+* **Official PDF Export**: Print-ready, layout-perfect PDF downloads for individual student report cards and cohort performance summaries.
+* **Refined Responsive Layout**: Optimized layouts for mobile, tablet, and desktop screens with smooth micro-interactions.
+
+---
+
 ## Project Structure
 
 Here is a high-level view of the project's folders and files:
@@ -30,6 +41,7 @@ ikonex-student-management/
 │   │   ├── main.tsx                       # React application bootstrapper
 │   │   └── types.ts                       # Domain TypeScript interfaces
 │   ├── index.html                         # Entry HTML file
+│   ├── landing.html                       # Standalone rebuilt landing page HTML
 │   ├── package.json                       # Frontend scripts & dependencies
 │   └── vite.config.ts                     # Vite build and server config
 │
