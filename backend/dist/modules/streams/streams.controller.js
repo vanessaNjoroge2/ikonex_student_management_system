@@ -43,5 +43,26 @@ class StreamsController {
             next(error);
         }
     }
+    static async assignTeacher(req, res, next) {
+        try {
+            const { id } = req.params;
+            const { teacherId } = req.body;
+            const updated = await streams_service_1.StreamsService.assignTeacher(id, teacherId);
+            return (0, response_1.sendSuccess)(res, updated);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+    static async create(req, res, next) {
+        try {
+            const { name, room, gradeLevel, type, teacherId } = req.body;
+            const newStream = await streams_service_1.StreamsService.createStream({ name, room, gradeLevel, type, teacherId });
+            return (0, response_1.sendSuccess)(res, newStream, 201);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
 }
 exports.StreamsController = StreamsController;

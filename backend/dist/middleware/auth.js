@@ -37,8 +37,9 @@ exports.requireAuth = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
 const env_1 = require("../config/env");
 const response_1 = require("../utils/response");
+const db_1 = require("../config/db");
 const requireAuth = (roles) => {
-    return (req, res, next) => {
+    return async (req, res, next) => {
         const authHeader = req.headers.authorization;
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return (0, response_1.sendError)(res, 'Authorization token required', 401, 'UNAUTHORIZED');
@@ -46,6 +47,13 @@ const requireAuth = (roles) => {
         const token = authHeader.split(' ')[1];
         try {
             const decoded = jwt.verify(token, env_1.env.jwtSecret);
+            // Verify that the user still exists in the database (e.g. not deleted/re-seeded) and is active
+            const userExists = await db_1.prisma.prismaUser.findUnique({
+                where: { id: decoded.id }
+            });
+            if (!userExists || userExists.isSuspended) {
+                return (0, response_1.sendError)(res, 'Invalid or expired authorization token', 401, 'UNAUTHORIZED');
+            }
             req.user = decoded;
             if (roles && roles.length > 0 && !roles.includes(decoded.role)) {
                 return (0, response_1.sendError)(res, 'Access forbidden: insufficient permissions', 403, 'FORBIDDEN');
@@ -53,7 +61,10 @@ const requireAuth = (roles) => {
             next();
         }
         catch (err) {
-            return (0, response_1.sendError)(res, 'Invalid or expired authorization token', 401, 'UNAUTHORIZED');
+            if (err instanceof jwt.JsonWebTokenError || err instanceof jwt.TokenExpiredError) {
+                return (0, response_1.sendError)(res, 'Invalid or expired authorization token', 401, 'UNAUTHORIZED');
+            }
+            next(err);
         }
     };
 };

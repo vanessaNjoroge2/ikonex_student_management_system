@@ -9,25 +9,104 @@ class StudentsService {
             where: { id: studentId }
         });
         if (!student)
-            return [];
-        const scoreWhere = { studentId };
-        if (!isAdmin && teacherId) {
-            scoreWhere.teacherId = teacherId;
-        }
-        const scores = await db_1.prisma.score.findMany({
-            where: scoreWhere,
-            include: { subject: true },
+            return { grades: [], overallPosition: 1 };
+        // 1. Get all classmates in the same stream
+        const classmates = await db_1.prisma.student.findMany({
+            where: { streamId: student.streamId, isDeleted: false }
         });
-        const subjectWhere = {};
-        if (!isAdmin && teacherId) {
-            subjectWhere.teacherId = teacherId;
-        }
-        const subjects = await db_1.prisma.subject.findMany({
-            where: subjectWhere
+        const classmateIds = classmates.map(c => c.id);
+        // 2. Fetch all scores for these classmates
+        const allScores = await db_1.prisma.score.findMany({
+            where: { studentId: { in: classmateIds } }
         });
-        // Group scores by subject
-        return subjects.map((sub) => {
-            const subScores = scores.filter((s) => s.subjectId === sub.id);
+        // 3. Fetch all subjects
+        const allSubjects = await db_1.prisma.subject.findMany();
+        // 4. Fetch grading scales from database
+        const dbScales = await db_1.prisma.gradingScale.findMany({
+            orderBy: { minScore: 'desc' }
+        });
+        const determineGrade = (score) => {
+            if (dbScales.length > 0) {
+                const matched = dbScales.find(s => score >= s.minScore);
+                if (matched) {
+                    return {
+                        letter: matched.letter,
+                        status: matched.status,
+                        remarks: matched.remarks
+                    };
+                }
+            }
+            const fallback = (0, grading_1.getGradeLetter)(score);
+            return {
+                letter: fallback.letter,
+                status: fallback.status,
+                remarks: (0, grading_1.getRemarksForGrade)(fallback.letter)
+            };
+        };
+        // 5. Compute classmate performance profile
+        const classmatePerformance = classmates.map(c => {
+            const studentScores = allScores.filter(s => s.studentId === c.id);
+            let overallTotalScore = 0;
+            let overallMaxScore = 0;
+            const subjectScores = {}; // subjectId -> totalScore
+            allSubjects.forEach(sub => {
+                const subScores = studentScores.filter(s => s.subjectId === sub.id);
+                const ca = subScores.find(s => s.examType === 'CA')?.score || 0;
+                const exam = subScores.find(s => s.examType === 'EXAM')?.score || 0;
+                const caMax = subScores.find(s => s.examType === 'CA')?.maxScore || 30;
+                const examMax = subScores.find(s => s.examType === 'EXAM')?.maxScore || 70;
+                const total = ca + exam;
+                const max = caMax + examMax;
+                subjectScores[sub.id] = total;
+                overallTotalScore += total;
+                overallMaxScore += max;
+            });
+            const overallPercent = overallMaxScore > 0 ? Math.round((overallTotalScore / overallMaxScore) * 100) : 0;
+            return {
+                studentId: c.id,
+                subjectScores,
+                overallTotalScore,
+                overallPercent,
+            };
+        });
+        // 6. Compute overall rank (competition ranking)
+        const sortedOverall = [...classmatePerformance].sort((a, b) => b.overallTotalScore - a.overallTotalScore);
+        let currentOverallRank = 1;
+        const overallRanks = {};
+        for (let i = 0; i < sortedOverall.length; i++) {
+            if (i > 0 && sortedOverall[i].overallTotalScore < sortedOverall[i - 1].overallTotalScore) {
+                currentOverallRank = i + 1;
+            }
+            overallRanks[sortedOverall[i].studentId] = currentOverallRank;
+        }
+        const overallPosition = overallRanks[studentId] || 1;
+        // 7. Compute subject ranks (competition ranking)
+        const subjectRanks = {}; // subjectId -> { studentId -> rank }
+        allSubjects.forEach(sub => {
+            const sortedForSub = [...classmatePerformance].sort((a, b) => (b.subjectScores[sub.id] || 0) - (a.subjectScores[sub.id] || 0));
+            let currentSubRank = 1;
+            const ranksForSub = {};
+            for (let i = 0; i < sortedForSub.length; i++) {
+                const currentScore = sortedForSub[i].subjectScores[sub.id] || 0;
+                const prevScore = i > 0 ? (sortedForSub[i - 1].subjectScores[sub.id] || 0) : null;
+                if (prevScore !== null && currentScore < prevScore) {
+                    currentSubRank = i + 1;
+                }
+                ranksForSub[sortedForSub[i].studentId] = currentSubRank;
+            }
+            subjectRanks[sub.id] = ranksForSub;
+        });
+        // 8. Filter subjects for response if a teacher is requesting and they are not admin
+        const mySubjects = allSubjects.filter(sub => {
+            if (!isAdmin && teacherId) {
+                return sub.teacherId === teacherId;
+            }
+            return true;
+        });
+        const myScores = allScores.filter(s => s.studentId === studentId);
+        // 9. Build final grades array
+        const grades = mySubjects.map((sub) => {
+            const subScores = myScores.filter((s) => s.subjectId === sub.id);
             const caScoreRec = subScores.find((s) => s.examType === 'CA');
             const examScoreRec = subScores.find((s) => s.examType === 'EXAM');
             const caScore = caScoreRec ? caScoreRec.score : 0;
@@ -37,7 +116,8 @@ class StudentsService {
             const totalScore = caScore + examScore;
             const totalMax = caMax + examMax;
             const percent = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
-            const { letter, status } = (0, grading_1.getGradeLetter)(percent);
+            const { letter, status, remarks } = determineGrade(percent);
+            const subjectPosition = subjectRanks[sub.id]?.[studentId] || 1;
             return {
                 subject: sub.name,
                 caScore,
@@ -49,11 +129,13 @@ class StudentsService {
                 percent,
                 letter,
                 status,
-                remarks: (0, grading_1.getRemarksForGrade)(letter),
+                remarks,
+                subjectPosition,
             };
         });
+        return { grades, overallPosition };
     }
-    static mapStudentResponse(student, grades) {
+    static mapStudentResponse(student, grades, overallPosition) {
         return {
             id: student.id,
             name: student.fullName,
@@ -80,6 +162,7 @@ class StudentsService {
             streamId: student.streamId,
             gradeLevel: `${student.formLevel}${student.stream}`, // e.g. Form 1A
             grades,
+            overallPosition,
         };
     }
     static async listStudents(filters) {
@@ -126,8 +209,8 @@ class StudentsService {
         ]);
         const result = [];
         for (const student of students) {
-            const grades = await this.computeGrades(student.id, filters.teacherId, filters.isAdmin);
-            result.push(this.mapStudentResponse(student, grades));
+            const { grades, overallPosition } = await this.computeGrades(student.id, filters.teacherId, filters.isAdmin);
+            result.push(this.mapStudentResponse(student, grades, overallPosition));
         }
         return { students: result, total };
     }
@@ -137,8 +220,8 @@ class StudentsService {
         });
         if (!student || student.isDeleted)
             return null;
-        const grades = await this.computeGrades(student.id, teacherId, isAdmin);
-        return this.mapStudentResponse(student, grades);
+        const { grades, overallPosition } = await this.computeGrades(student.id, teacherId, isAdmin);
+        return this.mapStudentResponse(student, grades, overallPosition);
     }
     static async createStudent(data) {
         const existing = await db_1.prisma.student.findUnique({
@@ -178,8 +261,8 @@ class StudentsService {
                 teacherId: data.teacherId,
             },
         });
-        const grades = await this.computeGrades(student.id);
-        return this.mapStudentResponse(student, grades);
+        const { grades, overallPosition } = await this.computeGrades(student.id);
+        return this.mapStudentResponse(student, grades, overallPosition);
     }
     static async updateStudent(id, data) {
         if (data.admissionNumber) {
@@ -198,7 +281,12 @@ class StudentsService {
             if (currentStudent) {
                 const nextForm = data.formLevel || currentStudent.formLevel;
                 const nextStream = data.stream || currentStudent.stream;
-                updateData.streamId = `${nextForm.replace(' ', '')}-${nextStream.toUpperCase()}`;
+                const newStreamId = `${nextForm.replace(' ', '')}-${nextStream.toUpperCase()}`;
+                updateData.streamId = newStreamId;
+                const stream = await db_1.prisma.stream.findUnique({ where: { id: newStreamId } });
+                if (stream && stream.teacherId) {
+                    updateData.teacherId = stream.teacherId;
+                }
             }
         }
         if (data.stream) {
@@ -211,8 +299,8 @@ class StudentsService {
             where: { id },
             data: updateData,
         });
-        const grades = await this.computeGrades(student.id);
-        return this.mapStudentResponse(student, grades);
+        const { grades, overallPosition } = await this.computeGrades(student.id);
+        return this.mapStudentResponse(student, grades, overallPosition);
     }
     static async deleteStudent(id) {
         await db_1.prisma.student.update({

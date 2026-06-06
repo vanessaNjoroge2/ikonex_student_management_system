@@ -29,7 +29,7 @@ exports.createStudentSchema = zod_1.z.object({
         attendancePercentage: zod_1.z.preprocess((val) => parseFloat(val), zod_1.z.number().min(0).max(100)).optional(),
         remarks: zod_1.z.string().optional(),
         image: zod_1.z.string().optional(),
-        email: zod_1.z.string().email().optional(),
+        email: zod_1.z.preprocess((val) => (val === '' ? undefined : val), zod_1.z.string().email().optional()),
     }),
 });
 exports.updateStudentSchema = zod_1.z.object({
@@ -51,7 +51,7 @@ exports.updateStudentSchema = zod_1.z.object({
         attendancePercentage: zod_1.z.preprocess((val) => parseFloat(val), zod_1.z.number().min(0).max(100)).optional(),
         remarks: zod_1.z.string().optional(),
         image: zod_1.z.string().optional(),
-        email: zod_1.z.string().email().optional(),
+        email: zod_1.z.preprocess((val) => (val === '' ? undefined : val), zod_1.z.string().email().optional()),
     }).partial(),
 });
 class StudentsController {
@@ -95,9 +95,36 @@ class StudentsController {
     }
     static async create(req, res, next) {
         try {
+            let teacherId = req.user.id;
+            if (req.user.role === 'ADMIN') {
+                const streamId = `${req.body.formLevel.replace(' ', '')}-${req.body.stream.toUpperCase()}`;
+                const stream = await db_1.prisma.stream.findUnique({ where: { id: streamId } });
+                if (stream && stream.teacherId) {
+                    teacherId = stream.teacherId;
+                }
+                else {
+                    // Find a teacher associated with this stream first (via subjects in this stream)
+                    const subjectStream = await db_1.prisma.subjectStream.findFirst({
+                        where: { streamId },
+                        include: { subject: true }
+                    });
+                    if (subjectStream && subjectStream.subject && subjectStream.subject.teacherId) {
+                        teacherId = subjectStream.subject.teacherId;
+                    }
+                    else {
+                        // Fall back to the first teacher in the database
+                        const firstTeacher = await db_1.prisma.prismaUser.findFirst({
+                            where: { role: 'TEACHER', isSuspended: false }
+                        });
+                        if (firstTeacher) {
+                            teacherId = firstTeacher.id;
+                        }
+                    }
+                }
+            }
             const student = await students_service_1.StudentsService.createStudent({
                 ...req.body,
-                teacherId: req.user.id
+                teacherId
             });
             return (0, response_1.sendSuccess)(res, student, 201);
         }
@@ -152,8 +179,8 @@ class StudentsController {
             if (studentExists.teacherId !== req.user.id && req.user.role !== 'ADMIN') {
                 return (0, response_1.sendError)(res, 'Access forbidden: student belongs to another teacher', 403, 'FORBIDDEN');
             }
-            const grades = await students_service_1.StudentsService.computeGrades(req.params.id, req.user.id, req.user.role === 'ADMIN');
-            return (0, response_1.sendSuccess)(res, grades);
+            const gradesResult = await students_service_1.StudentsService.computeGrades(req.params.id, req.user.id, req.user.role === 'ADMIN');
+            return (0, response_1.sendSuccess)(res, gradesResult.grades);
         }
         catch (error) {
             next(error);
@@ -171,10 +198,10 @@ class StudentsController {
                 return (0, response_1.sendError)(res, 'Access forbidden: student belongs to another teacher', 403, 'FORBIDDEN');
             }
             const student = await students_service_1.StudentsService.getStudent(req.params.id, req.user.id, req.user.role === 'ADMIN');
-            const grades = await students_service_1.StudentsService.computeGrades(req.params.id, req.user.id, req.user.role === 'ADMIN');
+            const gradesResult = await students_service_1.StudentsService.computeGrades(req.params.id, req.user.id, req.user.role === 'ADMIN');
             return (0, response_1.sendSuccess)(res, {
                 student,
-                grades,
+                grades: gradesResult.grades,
                 summary: {
                     kcpeScore: student.kcpeScore,
                     attendance: student.attendancePercentage,

@@ -55,6 +55,9 @@ class ScoresService {
     static async createScore(data) {
         const year = data.year || 2026;
         const dbExamType = data.examType === 'CA' ? client_1.ExamType.CA : client_1.ExamType.EXAM;
+        if (data.score > data.maxScore) {
+            throw new Error('Score cannot exceed maximum score');
+        }
         // Resolve subject by name and teacherId
         const subjectWhere = { name: data.subjectName };
         if (!data.isAdmin) {
@@ -118,6 +121,11 @@ class ScoresService {
         const existingScore = await db_1.prisma.score.findUnique({ where: { id } });
         if (!existingScore)
             return null;
+        const scoreVal = data.score !== undefined ? data.score : existingScore.score;
+        const maxScoreVal = data.maxScore !== undefined ? data.maxScore : existingScore.maxScore;
+        if (scoreVal > maxScoreVal) {
+            throw new Error('Score cannot exceed maximum score');
+        }
         const updateData = {};
         if (data.score !== undefined)
             updateData.score = data.score;

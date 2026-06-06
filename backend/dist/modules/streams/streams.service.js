@@ -29,10 +29,14 @@ class StreamsService {
             avgPerformance,
             trend: stream.trend,
             type: stream.type,
+            teacherId: stream.teacherId || null,
+            teacherName: stream.teacher ? stream.teacher.name : null,
+            teacher: stream.teacher ? { id: stream.teacher.id, name: stream.teacher.name, email: stream.teacher.email } : null,
         };
     }
     static async listStreams() {
         const streams = await db_1.prisma.stream.findMany({
+            include: { teacher: true },
             orderBy: { name: 'asc' },
         });
         const result = [];
@@ -42,10 +46,45 @@ class StreamsService {
         return result;
     }
     static async getStream(id) {
-        const stream = await db_1.prisma.stream.findUnique({ where: { id } });
+        const stream = await db_1.prisma.stream.findUnique({
+            where: { id },
+            include: { teacher: true },
+        });
         if (!stream)
             return null;
         return this.computeStreamStats(stream);
+    }
+    static async assignTeacher(streamId, teacherId) {
+        const stream = await db_1.prisma.stream.findUnique({ where: { id: streamId } });
+        if (!stream) {
+            const err = new Error('Stream not found');
+            err.statusCode = 404;
+            throw err;
+        }
+        if (teacherId) {
+            const teacher = await db_1.prisma.prismaUser.findUnique({ where: { id: teacherId } });
+            if (!teacher || (teacher.role !== 'TEACHER' && teacher.role !== 'ADMIN')) {
+                const err = new Error('Teacher not found or invalid role');
+                err.statusCode = 404;
+                throw err;
+            }
+        }
+        // Update Stream
+        const updatedStream = await db_1.prisma.stream.update({
+            where: { id: streamId },
+            data: {
+                teacherId: teacherId || null,
+            },
+            include: { teacher: true },
+        });
+        // If teacher is assigned, update all students in this stream to have the same teacherId!
+        if (teacherId) {
+            await db_1.prisma.student.updateMany({
+                where: { streamId, isDeleted: false },
+                data: { teacherId },
+            });
+        }
+        return this.computeStreamStats(updatedStream);
     }
     static async getStreamStudents(streamId) {
         const students = await db_1.prisma.student.findMany({
@@ -105,6 +144,41 @@ class StreamsService {
             });
         }
         return result;
+    }
+    static async createStream(data) {
+        if (!data.name || !data.room || !data.gradeLevel || !data.type) {
+            const err = new Error('Name, Room, Grade Level, and Type are required');
+            err.statusCode = 400;
+            throw err;
+        }
+        // Format ID to be alphanumeric-dash (e.g. Form 3C -> Form-3C or Form-3-C)
+        const id = data.name.trim().replace(/\s+/g, '-');
+        const existing = await db_1.prisma.stream.findUnique({ where: { id } });
+        if (existing) {
+            const err = new Error('Stream with this name already exists');
+            err.statusCode = 400;
+            throw err;
+        }
+        if (data.teacherId) {
+            const teacher = await db_1.prisma.prismaUser.findUnique({ where: { id: data.teacherId } });
+            if (!teacher || (teacher.role !== 'TEACHER' && teacher.role !== 'ADMIN')) {
+                const err = new Error('Teacher not found or invalid role');
+                err.statusCode = 400;
+                throw err;
+            }
+        }
+        const newStream = await db_1.prisma.stream.create({
+            data: {
+                id,
+                name: data.name,
+                room: data.room,
+                gradeLevel: data.gradeLevel,
+                type: data.type,
+                teacherId: data.teacherId || null,
+            },
+            include: { teacher: true },
+        });
+        return this.computeStreamStats(newStream);
     }
 }
 exports.StreamsService = StreamsService;

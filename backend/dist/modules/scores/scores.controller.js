@@ -14,6 +14,9 @@ exports.createScoreSchema = zod_1.z.object({
         year: zod_1.z.number().int().optional(),
         score: zod_1.z.number().min(0, 'Score cannot be negative'),
         maxScore: zod_1.z.number().min(1, 'Max score must be at least 1'),
+    }).refine((data) => data.score <= data.maxScore, {
+        message: 'Score cannot exceed maximum score',
+        path: ['score'],
     }),
 });
 exports.updateScoreSchema = zod_1.z.object({
@@ -22,7 +25,15 @@ exports.updateScoreSchema = zod_1.z.object({
         maxScore: zod_1.z.number().min(1).optional(),
         term: zod_1.z.string().optional(),
         examType: zod_1.z.enum(['Exam', 'CA']).optional(),
-    }).partial(),
+    }).refine((data) => {
+        if (data.score !== undefined && data.maxScore !== undefined) {
+            return data.score <= data.maxScore;
+        }
+        return true;
+    }, {
+        message: 'Score cannot exceed maximum score',
+        path: ['score'],
+    }),
 });
 class ScoresController {
     static async list(req, res, next) {

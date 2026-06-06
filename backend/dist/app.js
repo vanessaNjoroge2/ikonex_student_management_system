@@ -16,6 +16,7 @@ const scores_routes_1 = __importDefault(require("./modules/scores/scores.routes"
 const reports_routes_1 = __importDefault(require("./modules/reports/reports.routes"));
 const dashboard_routes_1 = __importDefault(require("./modules/dashboard/dashboard.routes"));
 const accounts_routes_1 = __importDefault(require("./modules/accounts/accounts.routes"));
+const grading_routes_1 = __importDefault(require("./modules/grading/grading.routes"));
 const app = (0, express_1.default)();
 // Security and Logging middleware
 app.use((0, helmet_1.default)());
@@ -44,6 +45,7 @@ app.use('/api/scores', scores_routes_1.default);
 app.use('/api/reports', reports_routes_1.default);
 app.use('/api/dashboard', dashboard_routes_1.default);
 app.use('/api/accounts', accounts_routes_1.default);
+app.use('/api/grading-scales', grading_routes_1.default);
 // Global Error Handler
 app.use(errorHandler_1.errorHandler);
 exports.default = app;

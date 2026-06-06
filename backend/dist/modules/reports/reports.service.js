@@ -108,7 +108,8 @@ class ReportsService {
             },
         });
         for (const student of students) {
-            const grades = await students_service_1.StudentsService.computeGrades(student.id);
+            const gradesResult = await students_service_1.StudentsService.computeGrades(student.id);
+            const grades = gradesResult.grades;
             const filtered = subjectId
                 ? grades.filter((g) => g.subject.toLowerCase() === subjectId.toLowerCase())
                 : grades;
