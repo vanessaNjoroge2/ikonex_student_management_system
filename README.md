@@ -147,25 +147,7 @@ npm run dev
 ```
 The frontend application will start on **http://localhost:5173** (or choose port 3000/3001 if selected).
 
----
 
-## Authentication & Default Credentials
-
-All core endpoints (except auth routes) require requests to include an `Authorization` header containing the JWT token.
-```text
-Authorization: Bearer <your_access_token>
-```
-
-The database includes the following seeded accounts:
-
-| Name | Email / Username | Password | Role |
-| :--- | :--- | :--- | :--- |
-| **John Miller** | `j.miller@ikonex.edu` | `password123` | **ADMIN** |
-| **Sarah Jenkins** | `s.jenkins@ikonex.edu` | `password123` | **TEACHER** |
-| **Emily Bronte** | `e.bronte@ikonex.edu` | `password123` | **TEACHER** |
-| **Alan Turing** | `a.turing@ikonex.edu` | `password123` | **TEACHER** |
-
----
 
 ## Grading Policy & Rules
 
