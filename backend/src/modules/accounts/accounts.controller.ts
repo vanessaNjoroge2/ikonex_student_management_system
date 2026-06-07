@@ -65,7 +65,8 @@ export class AccountsController {
     try {
       const { name, email, password, role } = req.body;
 
-      const existing = await prisma.prismaUser.findUnique({ where: { email } });
+      const normalizedEmail = email.toLowerCase().trim();
+      const existing = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
       if (existing) {
         return sendError(res, 'Email is already in use', 409, 'CONFLICT');
       }
@@ -76,7 +77,7 @@ export class AccountsController {
       const user = await prisma.prismaUser.create({
         data: {
           name,
-          email,
+          email: normalizedEmail,
           password: passwordHash,
           role,
           isVerified: true, // Auto verify created accounts
@@ -107,8 +108,9 @@ export class AccountsController {
         return sendError(res, 'Account not found', 404, 'NOT_FOUND');
       }
 
-      if (email && email !== account.email) {
-        const existing = await prisma.prismaUser.findUnique({ where: { email } });
+      const normalizedEmail = email ? email.toLowerCase().trim() : undefined;
+      if (normalizedEmail && normalizedEmail !== account.email) {
+        const existing = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
         if (existing) {
           return sendError(res, 'Email is already in use', 409, 'CONFLICT');
         }
@@ -118,7 +120,7 @@ export class AccountsController {
         where: { id },
         data: {
           name,
-          email,
+          email: normalizedEmail,
           role,
           isSuspended,
         },
@@ -206,12 +208,15 @@ export class AccountsController {
 
       const updateData: any = {};
       if (name) updateData.name = name;
-      if (email && email !== account.email) {
-        const existing = await prisma.prismaUser.findUnique({ where: { email } });
-        if (existing) {
-          return sendError(res, 'Email is already in use', 409, 'CONFLICT');
+      if (email) {
+        const normalizedEmail = email.toLowerCase().trim();
+        if (normalizedEmail !== account.email) {
+          const existing = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
+          if (existing) {
+            return sendError(res, 'Email is already in use', 409, 'CONFLICT');
+          }
+          updateData.email = normalizedEmail;
         }
-        updateData.email = email;
       }
       if (password) {
         const salt = await bcrypt.genSalt(10);

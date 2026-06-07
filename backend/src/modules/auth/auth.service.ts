@@ -6,7 +6,8 @@ import { Role } from '@prisma/client';
 
 export class AuthService {
   static async validateUser(email: string, passwordHash: string) {
-    const user = await prisma.prismaUser.findUnique({ where: { email } });
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
     if (!user) return null;
     if (user.isSuspended) {
       const err = new Error('Your account has been suspended. Please contact the administrator.') as any;
@@ -20,7 +21,8 @@ export class AuthService {
   }
 
   static async registerUser(name: string, email: string, passwordPlain: string, role: Role = Role.TEACHER) {
-    const existing = await prisma.prismaUser.findUnique({ where: { email } });
+    const normalizedEmail = email.toLowerCase().trim();
+    const existing = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
     if (existing) {
       const err = new Error('Email is already registered');
       (err as any).statusCode = 409;
@@ -36,7 +38,7 @@ export class AuthService {
     const user = await prisma.prismaUser.create({
       data: {
         name,
-        email,
+        email: normalizedEmail,
         password,
         role,
         isVerified: false,

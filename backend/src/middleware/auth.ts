@@ -24,9 +24,13 @@ export const requireAuth = (roles?: Role[]) => {
         return sendError(res, 'Invalid or expired authorization token', 401, 'UNAUTHORIZED');
       }
 
-      req.user = decoded;
+      req.user = {
+        id: userExists.id,
+        email: userExists.email,
+        role: userExists.role,
+      };
 
-      if (roles && roles.length > 0 && !roles.includes(decoded.role)) {
+      if (roles && roles.length > 0 && !roles.includes(userExists.role)) {
         return sendError(res, 'Access forbidden: insufficient permissions', 403, 'FORBIDDEN');
       }
 

@@ -108,7 +108,8 @@ export class AuthController {
         return sendError(res, 'Email is required', 400, 'BAD_REQUEST');
       }
 
-      const user = await prisma.prismaUser.findUnique({ where: { email } });
+      const normalizedEmail = email.toLowerCase().trim();
+      const user = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
       if (!user) {
         return sendError(res, 'User not found', 404, 'NOT_FOUND');
       }
@@ -138,7 +139,8 @@ export class AuthController {
         return sendError(res, 'Email and code are required', 400, 'BAD_REQUEST');
       }
 
-      const user = await prisma.prismaUser.findUnique({ where: { email } });
+      const normalizedEmail = email.toLowerCase().trim();
+      const user = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
       if (!user) {
         return sendError(res, 'User not found', 404, 'NOT_FOUND');
       }
@@ -211,13 +213,18 @@ export class AuthController {
         return sendError(res, 'Email and password are required', 400, 'BAD_REQUEST');
       }
 
-      const user = await AuthService.validateUser(email, password);
+      const normalizedEmail = email.toLowerCase().trim();
+      const user = await AuthService.validateUser(normalizedEmail, password);
       if (!user) {
         return sendError(res, 'Invalid credentials', 401, 'INVALID_CREDENTIALS');
       }
 
       if (user.role !== 'ADMIN') {
         return sendError(res, 'Access forbidden: Only Administrators are allowed here.', 403, 'FORBIDDEN');
+      }
+
+      if (!user.isVerified) {
+        return sendError(res, 'Please verify your email before logging in.', 403, 'UNVERIFIED');
       }
 
       // ✅ FIX: After prisma generate, isSuspended will be recognised on the user type
@@ -269,7 +276,8 @@ export class AuthController {
         return sendError(res, 'Email and code are required', 400, 'BAD_REQUEST');
       }
 
-      const user = await prisma.prismaUser.findUnique({ where: { email } });
+      const normalizedEmail = email.toLowerCase().trim();
+      const user = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
       if (!user) {
         return sendError(res, 'User not found', 404, 'NOT_FOUND');
       }
@@ -381,7 +389,8 @@ export class AuthController {
   static async forgotPassword(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       const { email } = req.body;
-      const user = await prisma.prismaUser.findUnique({ where: { email } });
+      const normalizedEmail = email.toLowerCase().trim();
+      const user = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
       if (!user) {
         return sendError(res, 'No user found with this email address.', 404, 'NOT_FOUND');
       }
@@ -407,7 +416,8 @@ export class AuthController {
   static async resetPassword(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       const { email, code, newPassword } = req.body;
-      const user = await prisma.prismaUser.findUnique({ where: { email } });
+      const normalizedEmail = email.toLowerCase().trim();
+      const user = await prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
       if (!user) {
         return sendError(res, 'No user found with this email address.', 404, 'NOT_FOUND');
       }
