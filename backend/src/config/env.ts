@@ -10,4 +10,5 @@ export const env = {
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || 'another_super_secret_key_change_me_in_production',
   gmailUser: process.env.GMAIL_USER || '',
   gmailAppPassword: process.env.GMAIL_APP_PASSWORD || '',
+  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
 };
