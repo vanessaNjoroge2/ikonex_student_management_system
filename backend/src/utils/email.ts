@@ -8,11 +8,16 @@ const createTransporter = () => {
     return null;
   }
 
+  // Strip spaces from App Password (e.g. "xxxx xxxx xxxx xxxx" -> "xxxxxxxxxxxxxxxx")
+  const password = env.gmailAppPassword.replace(/\s+/g, '');
+
   return nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
       user: env.gmailUser,
-      pass: env.gmailAppPassword,
+      pass: password,
     },
   });
 };
