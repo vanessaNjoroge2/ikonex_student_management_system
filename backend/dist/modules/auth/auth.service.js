@@ -41,7 +41,8 @@ const jwt = __importStar(require("jsonwebtoken"));
 const client_1 = require("@prisma/client");
 class AuthService {
     static async validateUser(email, passwordHash) {
-        const user = await db_1.prisma.prismaUser.findUnique({ where: { email } });
+        const normalizedEmail = email.toLowerCase().trim();
+        const user = await db_1.prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
         if (!user)
             return null;
         if (user.isSuspended) {
@@ -56,7 +57,8 @@ class AuthService {
         return user;
     }
     static async registerUser(name, email, passwordPlain, role = client_1.Role.TEACHER) {
-        const existing = await db_1.prisma.prismaUser.findUnique({ where: { email } });
+        const normalizedEmail = email.toLowerCase().trim();
+        const existing = await db_1.prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
         if (existing) {
             const err = new Error('Email is already registered');
             err.statusCode = 409;
@@ -69,7 +71,7 @@ class AuthService {
         const user = await db_1.prisma.prismaUser.create({
             data: {
                 name,
-                email,
+                email: normalizedEmail,
                 password,
                 role,
                 isVerified: false,

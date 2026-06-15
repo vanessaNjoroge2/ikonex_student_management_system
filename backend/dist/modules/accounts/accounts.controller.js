@@ -93,7 +93,8 @@ class AccountsController {
     static async create(req, res, next) {
         try {
             const { name, email, password, role } = req.body;
-            const existing = await db_1.prisma.prismaUser.findUnique({ where: { email } });
+            const normalizedEmail = email.toLowerCase().trim();
+            const existing = await db_1.prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
             if (existing) {
                 return (0, response_1.sendError)(res, 'Email is already in use', 409, 'CONFLICT');
             }
@@ -102,7 +103,7 @@ class AccountsController {
             const user = await db_1.prisma.prismaUser.create({
                 data: {
                     name,
-                    email,
+                    email: normalizedEmail,
                     password: passwordHash,
                     role,
                     isVerified: true, // Auto verify created accounts
@@ -130,8 +131,9 @@ class AccountsController {
             if (!account) {
                 return (0, response_1.sendError)(res, 'Account not found', 404, 'NOT_FOUND');
             }
-            if (email && email !== account.email) {
-                const existing = await db_1.prisma.prismaUser.findUnique({ where: { email } });
+            const normalizedEmail = email ? email.toLowerCase().trim() : undefined;
+            if (normalizedEmail && normalizedEmail !== account.email) {
+                const existing = await db_1.prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
                 if (existing) {
                     return (0, response_1.sendError)(res, 'Email is already in use', 409, 'CONFLICT');
                 }
@@ -140,7 +142,7 @@ class AccountsController {
                 where: { id },
                 data: {
                     name,
-                    email,
+                    email: normalizedEmail,
                     role,
                     isSuspended,
                 },
@@ -219,12 +221,15 @@ class AccountsController {
             const updateData = {};
             if (name)
                 updateData.name = name;
-            if (email && email !== account.email) {
-                const existing = await db_1.prisma.prismaUser.findUnique({ where: { email } });
-                if (existing) {
-                    return (0, response_1.sendError)(res, 'Email is already in use', 409, 'CONFLICT');
+            if (email) {
+                const normalizedEmail = email.toLowerCase().trim();
+                if (normalizedEmail !== account.email) {
+                    const existing = await db_1.prisma.prismaUser.findUnique({ where: { email: normalizedEmail } });
+                    if (existing) {
+                        return (0, response_1.sendError)(res, 'Email is already in use', 409, 'CONFLICT');
+                    }
+                    updateData.email = normalizedEmail;
                 }
-                updateData.email = email;
             }
             if (password) {
                 const salt = await bcrypt.genSalt(10);

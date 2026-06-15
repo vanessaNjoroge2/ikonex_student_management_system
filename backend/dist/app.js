@@ -20,13 +20,29 @@ const grading_routes_1 = __importDefault(require("./modules/grading/grading.rout
 const app = (0, express_1.default)();
 // Security and Logging middleware
 app.use((0, helmet_1.default)());
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:5174',
+    'http://127.0.0.1:5174',
+    'https://ikonex-student-management-system.onrender.com',
+];
 app.use((0, cors_1.default)({
-    origin: [
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-        'http://localhost:5174',
-        'http://127.0.0.1:5174',
-    ],
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps, curl, or same-origin rewrites)
+        if (!origin) {
+            return callback(null, true);
+        }
+        const isAllowed = allowedOrigins.includes(origin) ||
+            origin.endsWith('.vercel.app') ||
+            origin.endsWith('.onrender.com');
+        if (isAllowed) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 app.use((0, morgan_1.default)('dev'));

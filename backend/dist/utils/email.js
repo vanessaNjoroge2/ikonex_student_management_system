@@ -16,11 +16,15 @@ const createTransporter = () => {
         console.warn('⚠️ GMAIL_USER or GMAIL_APP_PASSWORD not configured. Emails will be logged to console instead of being sent.');
         return null;
     }
+    // Strip spaces from App Password (e.g. "xxxx xxxx xxxx xxxx" -> "xxxxxxxxxxxxxxxx")
+    const password = env_1.env.gmailAppPassword.replace(/\s+/g, '');
     return nodemailer_1.default.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
             user: env_1.env.gmailUser,
-            pass: env_1.env.gmailAppPassword,
+            pass: password,
         },
     });
 };
@@ -44,7 +48,7 @@ async function sendWelcomeEmail(toEmail, name) {
           <p>Welcome to <strong>Ikonex Academy Student Management System</strong>! Your account has been registered successfully as an Administrator.</p>
           <p>With this portal, you can now seamlessly manage cohort streams, input student records, assign subjects, and generate comprehensive performance reports.</p>
           <div style="margin: 28px 0; text-align: center;">
-            <a href="http://localhost:5173/login" style="background-color: #3525cd; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 12px; display: inline-block;">Access your Dashboard</a>
+            <a href="${env_1.env.frontendUrl}/login" style="background-color: #3525cd; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 12px; display: inline-block;">Access your Dashboard</a>
           </div>
           <p style="font-size: 12px; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 16px; margin-top: 24px;">
             If you did not authorize this registration, please contact system administration immediately.
@@ -99,7 +103,7 @@ async function sendLoginAlertEmail(toEmail, name) {
             </tr>
             <tr>
               <td style="padding: 10px 14px; font-weight: bold; color: #475569;">Access Link</td>
-              <td style="padding: 10px 14px; color: #0f172a;">http://localhost:5173/dashboard</td>
+              <td style="padding: 10px 14px; color: #0f172a;">${env_1.env.frontendUrl}/dashboard</td>
             </tr>
           </table>
 

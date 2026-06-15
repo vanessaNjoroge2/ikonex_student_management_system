@@ -30,7 +30,7 @@ async function main() {
     ],
   });
 
-  console.log('✅ Grading Scales seeded');
+  console.log('Grading Scales seeded');
 
   // Create admin user
   const hashedPassword = await bcrypt.hash('Admin@1234', 10);
