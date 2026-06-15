@@ -7,7 +7,7 @@ import { env } from '../config/env';
 const createTransporter = () => {
   if (!env.gmailUser || !env.gmailAppPassword) {
     console.warn(
-      '⚠️ Email not configured (GMAIL_USER / GMAIL_APP_PASSWORD missing). Falling back to console logs.'
+      'Email not configured (GMAIL_USER / GMAIL_APP_PASSWORD missing). Falling back to console logs.'
     );
     return null;
   }
@@ -17,7 +17,7 @@ const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
-    secure: false, // ✅ MUST be false for port 587 (STARTTLS)
+    secure: false, // MUST be false for port 587 (STARTTLS)
     auth: {
       user: env.gmailUser,
       pass: password,
@@ -35,7 +35,7 @@ const transporter = createTransporter();
  */
 const sendMail = async (mailOptions: any) => {
   if (!transporter) {
-    console.log('✉️ [Mock Email]', mailOptions);
+    console.log(' [Mock Email]', mailOptions);
     return true;
   }
 
@@ -43,8 +43,8 @@ const sendMail = async (mailOptions: any) => {
     await transporter.sendMail(mailOptions);
     return true;
   } catch (error) {
-    console.error('❌ Email send failed:', error);
-    return false;
+    console.error('Email send failed:', error);
+    throw error;
   }
 };
 

@@ -88,9 +88,7 @@ export class AuthController {
       console.log('📬 BACKEND REGISTER ENDPOINT HIT - Request body:', { name, email, password: '***' });
       const user = await AuthService.registerUser(name, email, password);
 
-      sendVerificationOTPEmail(user.email, user.name, user.otpCode!).catch((err: unknown) => {
-        console.error('Failed to send verification email:', err);
-      });
+      await sendVerificationOTPEmail(user.email, user.name, user.otpCode!);
 
       return sendSuccess(res, {
         email: user.email,
@@ -122,9 +120,7 @@ export class AuthController {
         data: { otpCode, otpExpires },
       });
 
-      sendVerificationOTPEmail(user.email, user.name, otpCode).catch((err: unknown) => {
-        console.error('Failed to send verification email:', err);
-      });
+      await sendVerificationOTPEmail(user.email, user.name, otpCode);
 
       return sendSuccess(res, { message: 'Verification OTP code resent successfully' });
     } catch (error) {
@@ -193,9 +189,7 @@ export class AuthController {
         data: { twoFactorCode, twoFactorExpires },
       });
 
-      sendTwoFactorLoginEmail(user.email, user.name, twoFactorCode).catch((err: unknown) => {
-        console.error('Failed to send 2FA email:', err);
-      });
+      await sendTwoFactorLoginEmail(user.email, user.name, twoFactorCode);
 
       return sendSuccess(res, {
         email: user.email,
@@ -403,9 +397,7 @@ export class AuthController {
         data: { otpCode, otpExpires },
       });
 
-      sendPasswordResetEmail(user.email, user.name, otpCode).catch((err: unknown) => {
-        console.error('Failed to send password reset email:', err);
-      });
+      await sendPasswordResetEmail(user.email, user.name, otpCode);
 
       return sendSuccess(res, { message: 'Password reset code has been sent to your email.' });
     } catch (error) {
