@@ -88,7 +88,17 @@ export class AuthController {
       console.log('📬 BACKEND REGISTER ENDPOINT HIT - Request body:', { name, email, password: '***' });
       const user = await AuthService.registerUser(name, email, password);
 
-      await sendVerificationOTPEmail(user.email, user.name, user.otpCode!);
+      try {
+        await sendVerificationOTPEmail(user.email, user.name, user.otpCode!);
+      } catch (emailError: any) {
+        console.error('Failed to send verification email:', emailError);
+        return sendError(
+          res,
+          `Account registered successfully, but failed to send verification email: ${emailError.message || 'Unknown error'}. If you are hosting on Render (free tier), please configure the RESEND_API_KEY environment variable.`,
+          500,
+          'EMAIL_SEND_FAILED'
+        );
+      }
 
       return sendSuccess(res, {
         email: user.email,
@@ -120,7 +130,17 @@ export class AuthController {
         data: { otpCode, otpExpires },
       });
 
-      await sendVerificationOTPEmail(user.email, user.name, otpCode);
+      try {
+        await sendVerificationOTPEmail(user.email, user.name, otpCode);
+      } catch (emailError: any) {
+        console.error('Failed to send verification email:', emailError);
+        return sendError(
+          res,
+          `Failed to send verification email: ${emailError.message || 'Unknown error'}. If you are hosting on Render (free tier), please configure the RESEND_API_KEY environment variable.`,
+          500,
+          'EMAIL_SEND_FAILED'
+        );
+      }
 
       return sendSuccess(res, { message: 'Verification OTP code resent successfully' });
     } catch (error) {
@@ -189,7 +209,17 @@ export class AuthController {
         data: { twoFactorCode, twoFactorExpires },
       });
 
-      await sendTwoFactorLoginEmail(user.email, user.name, twoFactorCode);
+      try {
+        await sendTwoFactorLoginEmail(user.email, user.name, twoFactorCode);
+      } catch (emailError: any) {
+        console.error('Failed to send 2FA email:', emailError);
+        return sendError(
+          res,
+          `Failed to send 2FA code: ${emailError.message || 'Unknown error'}. If you are hosting on Render (free tier), please configure the RESEND_API_KEY environment variable.`,
+          500,
+          'EMAIL_SEND_FAILED'
+        );
+      }
 
       return sendSuccess(res, {
         email: user.email,
@@ -397,7 +427,17 @@ export class AuthController {
         data: { otpCode, otpExpires },
       });
 
-      await sendPasswordResetEmail(user.email, user.name, otpCode);
+      try {
+        await sendPasswordResetEmail(user.email, user.name, otpCode);
+      } catch (emailError: any) {
+        console.error('Failed to send password reset email:', emailError);
+        return sendError(
+          res,
+          `Failed to send email: ${emailError.message || 'Unknown error'}. If you are hosting on Render (free tier), please configure the RESEND_API_KEY environment variable.`,
+          500,
+          'EMAIL_SEND_FAILED'
+        );
+      }
 
       return sendSuccess(res, { message: 'Password reset code has been sent to your email.' });
     } catch (error) {

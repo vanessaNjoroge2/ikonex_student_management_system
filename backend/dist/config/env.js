@@ -56,4 +56,5 @@ exports.env = {
     gmailUser: cleanEnvVar(process.env.GMAIL_USER),
     gmailAppPassword: cleanEnvVar(process.env.GMAIL_APP_PASSWORD),
     frontendUrl: cleanEnvVar(process.env.FRONTEND_URL) || 'http://localhost:5173',
+    resendApiKey: cleanEnvVar(process.env.RESEND_API_KEY),
 };
