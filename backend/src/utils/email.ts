@@ -35,7 +35,69 @@ const transporter = createTransporter();
  */
 const sendMail = async (mailOptions: any) => {
   try {
-    // 1. Check if Resend API Key is configured (Preferred for production / bypasses Render SMTP block)
+    // 1. Check if Google Apps Script is configured (Simple & free / bypasses Render SMTP block without custom domain)
+    const googleScriptUrl = env.googleScriptUrl;
+    if (googleScriptUrl) {
+      const response = await fetch(googleScriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          secret: 'ikonex_secret_token_123',
+          to: mailOptions.to,
+          subject: mailOptions.subject,
+          html: mailOptions.html,
+        }),
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`Google Apps Script API returned status ${response.status}: ${errText}`);
+      }
+      
+      const result: any = await response.json();
+      if (!result.success) {
+        throw new Error(result.error || 'Unknown error from Google Apps Script');
+      }
+      return true;
+    }
+
+    // 2. Check if EmailJS is configured (Ideal for production / bypasses Render SMTP block without custom domain)
+    const emailJsServiceId = env.emailJsServiceId;
+    const emailJsTemplateId = env.emailJsTemplateId;
+    const emailJsPublicKey = env.emailJsPublicKey;
+    const emailJsPrivateKey = env.emailJsPrivateKey;
+
+    if (emailJsServiceId && emailJsTemplateId && emailJsPublicKey) {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: emailJsServiceId,
+          template_id: emailJsTemplateId,
+          user_id: emailJsPublicKey,
+          accessToken: emailJsPrivateKey || undefined,
+          template_params: {
+            to_email: mailOptions.to,
+            to_name: mailOptions.toName || 'User',
+            subject: mailOptions.subject,
+            code: mailOptions.code || '',
+            html_content: mailOptions.html,
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`EmailJS API returned status ${response.status}: ${errText}`);
+      }
+      return true;
+    }
+
+    // 2. Check if Resend API Key is configured (Preferred for production / bypasses Render SMTP block)
     const resendApiKey = env.resendApiKey;
     if (resendApiKey) {
       const response = await fetch('https://api.resend.com/emails', {
@@ -59,7 +121,7 @@ const sendMail = async (mailOptions: any) => {
       return true;
     }
 
-    // 2. Fallback to Nodemailer SMTP
+    // 3. Fallback to Nodemailer SMTP
     if (!transporter) {
       console.log(' [Mock Email]', mailOptions);
       return true;
@@ -86,6 +148,8 @@ export async function sendPasswordResetEmail(
   const mailOptions = {
     from: `"Ikonex Academy" <${env.gmailUser}>`,
     to: toEmail,
+    toName: name,
+    code: code,
     subject: 'Reset Your Ikonex Academy Password',
     html: `
       <div style="font-family: Arial; max-width:600px;margin:auto;padding:20px;">
@@ -114,6 +178,8 @@ export async function sendVerificationOTPEmail(
   const mailOptions = {
     from: `"Ikonex Academy" <${env.gmailUser}>`,
     to: toEmail,
+    toName: name,
+    code: otpCode,
     subject: 'Verify Your Account',
     html: `
       <div style="font-family: Arial; max-width:600px;margin:auto;padding:20px;">
@@ -139,6 +205,7 @@ export async function sendLoginAlertEmail(
   const mailOptions = {
     from: `"Ikonex Academy" <${env.gmailUser}>`,
     to: toEmail,
+    toName: name,
     subject: 'New Login Detected',
     html: `
       <p>Hello ${name},</p>
@@ -160,6 +227,8 @@ export async function sendTwoFactorLoginEmail(
   const mailOptions = {
     from: `"Ikonex Academy" <${env.gmailUser}>`,
     to: toEmail,
+    toName: name,
+    code: code,
     subject: 'Your Login Code',
     html: `
       <p>Hello ${name},</p>
