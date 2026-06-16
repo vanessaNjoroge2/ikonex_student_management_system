@@ -305,7 +305,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
           <button 
             onClick={() => setActiveTab('users')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
-              activeTab === 'users' ? 'bg-white text-[#3525cd] shadow-sm' : 'text-slate-500 hover:text-slate-800'
+              activeTab === 'users' ? 'bg-white text-[#9333ea] shadow-sm' : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             Accounts Registry
@@ -313,7 +313,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
           <button 
             onClick={() => setActiveTab('logs')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
-              activeTab === 'logs' ? 'bg-white text-[#3525cd] shadow-sm' : 'text-slate-500 hover:text-slate-800'
+              activeTab === 'logs' ? 'bg-white text-[#9333ea] shadow-sm' : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             Access logs
@@ -332,12 +332,12 @@ export default function AccountsView({ token }: AccountsViewProps) {
                 placeholder="Search name or email..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-707 focus:border-[#3525cd] outline-none"
+                className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-707 focus:border-[#9333ea] outline-none"
               />
             </div>
             <button
               onClick={handleOpenCreate}
-              className="flex items-center justify-center gap-2 bg-[#3525cd] hover:bg-[#4f46e5] text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 cursor-pointer active:scale-95 transition"
+              className="flex items-center justify-center gap-2 bg-[#9333ea] hover:bg-[#7e22ce] text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-purple-600/10 cursor-pointer active:scale-95 transition"
             >
               <Plus className="w-4 h-4 text-white" />
               Create Account
@@ -346,7 +346,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
 
           {loading ? (
             <div className="bg-white rounded-2xl border border-slate-200/50 p-12 text-center">
-              <Loader2 className="w-8 h-8 text-[#3525cd] animate-spin mx-auto mb-2" />
+              <Loader2 className="w-8 h-8 text-[#9333ea] animate-spin mx-auto mb-2" />
               <p className="text-xs font-semibold text-slate-400">Syncing registry...</p>
             </div>
           ) : (
@@ -371,7 +371,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                         <td className="p-4">
                           <span className={`px-2.5 py-0.5 rounded-full font-black text-[9px] uppercase tracking-wider ${
                             acc.role === 'ADMIN' 
-                              ? 'bg-indigo-50 text-[#3525cd]' 
+                              ? 'bg-purple-50 text-[#9333ea]' 
                               : acc.role === 'TEACHER' 
                                 ? 'bg-emerald-50 text-emerald-700' 
                                 : 'bg-slate-100 text-slate-600'
@@ -447,7 +447,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
         <div className="bg-white border border-slate-200/80 rounded-2xl shadow-sm p-6 space-y-4">
           <div className="flex justify-between items-center pb-2 border-b border-slate-100">
             <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-2">
-              <Activity className="w-4 h-4 text-[#3525cd]" />
+              <Activity className="w-4 h-4 text-[#9333ea]" />
               System Login Activity Logs
             </h3>
             <span className="text-[10px] text-slate-400 font-mono">Showing last 100 entries</span>
@@ -455,7 +455,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
 
           {loading ? (
             <div className="py-12 text-center">
-              <Loader2 className="w-8 h-8 text-[#3525cd] animate-spin mx-auto mb-2" />
+              <Loader2 className="w-8 h-8 text-[#9333ea] animate-spin mx-auto mb-2" />
               <p className="text-xs font-semibold text-slate-400">Syncing audit logs...</p>
             </div>
           ) : (
@@ -477,7 +477,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                       <td className="p-3">
                         <span className={`px-2 py-0.5 rounded-full font-black text-[9px] uppercase tracking-wider ${
                           log.role === 'ADMIN' 
-                            ? 'bg-indigo-50 text-[#3525cd]' 
+                            ? 'bg-purple-50 text-[#9333ea]' 
                             : log.role === 'TEACHER' 
                               ? 'bg-emerald-50 text-emerald-700' 
                               : 'bg-slate-100 text-slate-600'
@@ -511,7 +511,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
           <div className="bg-white rounded-3xl w-full max-w-md border border-slate-200 shadow-2xl overflow-hidden scale-100 animate-in fade-in zoom-in-95 duration-200">
             <div className="p-5 border-b border-slate-100 flex justify-between items-center">
               <h3 className="font-extrabold text-slate-900 text-sm tracking-tight flex items-center gap-2">
-                <Users className="w-4 h-4 text-[#3525cd]" />
+                <Users className="w-4 h-4 text-[#9333ea]" />
                 Register New User Account
               </h3>
               <button
@@ -537,7 +537,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                   placeholder="e.g. Vanessa Njoroge"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                 />
               </div>
 
@@ -548,7 +548,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                   placeholder="e.g. v.njoroge@ikonex.edu"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-850"
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-850"
                 />
               </div>
 
@@ -560,7 +560,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-850 pr-10"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-850 pr-10"
                   />
                   <button
                     type="button"
@@ -577,7 +577,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value as any)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-707"
+                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-707"
                 >
                   <option value="TEACHER">Teacher Account</option>
                   <option value="ADMIN">Admin Account</option>
@@ -596,7 +596,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                 <button
                   type="submit"
                   disabled={isActionLoading}
-                  className="flex-1 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 cursor-pointer"
+                  className="flex-1 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 cursor-pointer"
                 >
                   {isActionLoading ? <Loader2 className="w-4 h-4 animate-spin text-white" /> : 'Register Account'}
                 </button>
@@ -612,7 +612,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
           <div className="bg-white rounded-3xl w-full max-w-md border border-slate-200 shadow-2xl overflow-hidden scale-100 animate-in fade-in zoom-in-95 duration-200">
             <div className="p-5 border-b border-slate-100 flex justify-between items-center">
               <h3 className="font-extrabold text-slate-900 text-sm tracking-tight flex items-center gap-2">
-                <Users className="w-4 h-4 text-[#3525cd]" />
+                <Users className="w-4 h-4 text-[#9333ea]" />
                 Edit User Details
               </h3>
               <button
@@ -638,7 +638,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                   placeholder="e.g. Vanessa Njoroge"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                 />
               </div>
 
@@ -649,7 +649,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                   placeholder="e.g. v.njoroge@ikonex.edu"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-850"
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-850"
                 />
               </div>
 
@@ -658,7 +658,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value as any)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-707"
+                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-707"
                 >
                   <option value="TEACHER">Teacher Account</option>
                   <option value="ADMIN">Admin Account</option>
@@ -677,7 +677,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                 <button
                   type="submit"
                   disabled={isActionLoading}
-                  className="flex-1 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 cursor-pointer"
+                  className="flex-1 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 cursor-pointer"
                 >
                   {isActionLoading ? <Loader2 className="w-4 h-4 animate-spin text-white" /> : 'Save Details'}
                 </button>
@@ -693,7 +693,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
           <div className="bg-white rounded-3xl w-full max-w-sm border border-slate-200 shadow-2xl overflow-hidden scale-100 animate-in fade-in zoom-in-95 duration-200">
             <div className="p-5 border-b border-slate-100 flex justify-between items-center">
               <h3 className="font-extrabold text-slate-900 text-sm tracking-tight flex items-center gap-2">
-                <Key className="w-4 h-4 text-[#3525cd]" />
+                <Key className="w-4 h-4 text-[#9333ea]" />
                 Reset Password
               </h3>
               <button
@@ -724,7 +724,7 @@ export default function AccountsView({ token }: AccountsViewProps) {
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-850 pr-10"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-850 pr-10"
                   />
                   <button
                     type="button"

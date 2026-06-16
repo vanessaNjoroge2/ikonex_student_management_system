@@ -494,7 +494,7 @@ export default function ScoresView({
     <div className="space-y-6 animate-in duration-500 fade-in">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <span className="text-[10px] font-bold text-[#3525cd] tracking-widest uppercase">
+          <span className="text-[10px] font-bold text-[#9333ea] tracking-widest uppercase">
             Curriculum Assessments
           </span>
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 leading-tight">
@@ -507,7 +507,7 @@ export default function ScoresView({
             onClick={() => setActiveSubTab('record')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
               activeSubTab === 'record'
-                ? 'bg-white text-[#3525cd] shadow-sm'
+                ? 'bg-white text-[#9333ea] shadow-sm'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -517,7 +517,7 @@ export default function ScoresView({
             onClick={() => setActiveSubTab('charts')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
               activeSubTab === 'charts'
-                ? 'bg-white text-[#3525cd] shadow-sm'
+                ? 'bg-white text-[#9333ea] shadow-sm'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -527,7 +527,7 @@ export default function ScoresView({
             onClick={() => setActiveSubTab('class')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
               activeSubTab === 'class'
-                ? 'bg-white text-[#3525cd] shadow-sm'
+                ? 'bg-white text-[#9333ea] shadow-sm'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -547,7 +547,7 @@ export default function ScoresView({
                 placeholder="Search student name..."
                 value={filterStudentSearch}
                 onChange={(e) => setFilterStudentSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:border-[#3525cd] outline-none"
+                className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:border-[#9333ea] outline-none"
               />
             </div>
             
@@ -636,7 +636,7 @@ export default function ScoresView({
                           setSelectedStudent(null);
                         }
                       }}
-                      className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-707 focus:border-[#3525cd] outline-none"
+                      className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-707 focus:border-[#9333ea] outline-none"
                     />
                     {selectedStudent && (
                       <button
@@ -685,7 +685,7 @@ export default function ScoresView({
                   <select
                     value={chosenSubject}
                     onChange={(e) => setChosenSubject(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-707 transition"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-707 transition"
                   >
                     <option value="">-- Choose Subject --</option>
                     {subjects.map(sub => (
@@ -699,7 +699,7 @@ export default function ScoresView({
                   <select
                     value={chosenTerm}
                     onChange={(e) => setChosenTerm(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:border-[#3525cd] outline-none"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:border-[#9333ea] outline-none"
                   >
                     {terms.map(t => (
                       <option key={t} value={t}>{t}</option>
@@ -718,7 +718,7 @@ export default function ScoresView({
                       placeholder="e.g. 22"
                       value={catMarks}
                       onChange={(e) => setCatMarks(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-black text-slate-800"
+                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-black text-slate-800"
                     />
                   </div>
 
@@ -732,14 +732,14 @@ export default function ScoresView({
                       placeholder="e.g. 55"
                       value={examMarks}
                       onChange={(e) => setExamMarks(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-black text-slate-800"
+                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-black text-slate-800"
                     />
                   </div>
                 </div>
 
-                <div className="text-xs font-bold text-slate-700 bg-indigo-50/50 p-3.5 rounded-xl border border-indigo-100/50 flex justify-between items-center">
+                <div className="text-xs font-bold text-slate-700 bg-purple-50/50 p-3.5 rounded-xl border border-purple-100/50 flex justify-between items-center">
                   <span>Auto-calculated Total:</span>
-                  <span className="text-[#3525cd] font-black text-sm">{inlineTotal} / 100</span>
+                  <span className="text-[#9333ea] font-black text-sm">{inlineTotal} / 100</span>
                 </div>
 
                 <button
@@ -748,7 +748,7 @@ export default function ScoresView({
                   className={`w-full py-3.5 rounded-xl text-xs font-black tracking-wide shadow flex items-center justify-center gap-1.5 cursor-pointer ${
                     isSubmitting || !!validationError
                       ? 'bg-slate-300 text-slate-500 cursor-not-allowed'
-                      : 'bg-[#3525cd] hover:bg-[#4f46e5] text-white'
+                      : 'bg-[#9333ea] hover:bg-[#7e22ce] text-white'
                   }`}
                 >
                   {isSubmitting ? (
@@ -767,7 +767,7 @@ export default function ScoresView({
             <div className="lg:col-span-2 bg-white border border-slate-200/80 rounded-2xl shadow-sm p-5 space-y-4">
               <div className="flex justify-between items-center">
                 <h3 className="font-extrabold text-slate-900 text-sm">Recorded Scores Logs</h3>
-                <span className="px-2 py-0.5 bg-slate-100 text-[#3525cd] rounded text-[10px] font-black font-mono">
+                <span className="px-2 py-0.5 bg-slate-100 text-[#9333ea] rounded text-[10px] font-black font-mono">
                   {totalRecordsCount} Record(s) listed
                 </span>
               </div>
@@ -823,14 +823,14 @@ export default function ScoresView({
                                 >
                                   <div className="flex items-center gap-2 text-xs">
                                     {isCollapsed ? (
-                                      <ChevronRight className="w-4 h-4 text-[#3525cd]" />
+                                      <ChevronRight className="w-4 h-4 text-[#9333ea]" />
                                     ) : (
-                                      <ChevronDown className="w-4 h-4 text-[#3525cd]" />
+                                      <ChevronDown className="w-4 h-4 text-[#9333ea]" />
                                     )}
                                     <span>
                                       {group.formLevel} — Stream {group.stream}
                                     </span>
-                                    <span className="ml-auto px-2 py-0.5 bg-indigo-50 text-[#3525cd] rounded-[6px] text-[9px] font-bold">
+                                    <span className="ml-auto px-2 py-0.5 bg-purple-50 text-[#9333ea] rounded-[6px] text-[9px] font-bold">
                                       {group.rows.length} {group.rows.length === 1 ? 'record' : 'records'}
                                     </span>
                                   </div>
@@ -855,7 +855,7 @@ export default function ScoresView({
                                         <td className="p-2 text-center font-mono font-bold text-slate-600">
                                           {scoreInfo.examId ? scoreInfo.examScore : '-'}
                                         </td>
-                                        <td className="p-2 text-center font-mono font-black text-[#3525cd] bg-indigo-50/30">
+                                        <td className="p-2 text-center font-mono font-black text-[#9333ea] bg-purple-50/30">
                                           <div className="flex items-center justify-center gap-1.5">
                                             <span>{scoreInfo.catId || scoreInfo.examId ? scoreInfo.total : '-'}</span>
                                             {(scoreInfo.catId || scoreInfo.examId) && (
@@ -871,7 +871,7 @@ export default function ScoresView({
                                                     examId: scoreInfo.examId,
                                                     examScore: scoreInfo.examScore,
                                                   })}
-                                                  className="p-0.5 text-slate-400 hover:text-[#3525cd] hover:bg-slate-100 rounded"
+                                                  className="p-0.5 text-slate-400 hover:text-[#9333ea] hover:bg-slate-100 rounded"
                                                   title="Edit Score"
                                                 >
                                                   <Edit3 className="w-3 h-3" />
@@ -927,7 +927,7 @@ export default function ScoresView({
         <div className="space-y-6">
           <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <Award className="w-5 h-5 text-[#3525cd]" />
+              <Award className="w-5 h-5 text-[#9333ea]" />
               <div>
                 <h3 className="font-extrabold text-slate-900 text-xs">Visualize Performance</h3>
                 <p className="text-[10px] text-slate-400 mt-0.5">Filter charts on any student profile in the academy.</p>
@@ -971,7 +971,7 @@ export default function ScoresView({
                       <Tooltip formatter={(value) => [`${value}%`]} />
                       <Legend wrapperStyle={{ fontSize: '10px', fontWeight: 'bold' }} />
                       <Bar dataKey="Continuous Assessment (CA) %" fill="#fb923c" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="Final Examination %" fill="#3525cd" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="Final Examination %" fill="#9333ea" radius={[4, 4, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -990,7 +990,7 @@ export default function ScoresView({
                       <PolarGrid stroke="#e2e8f0" />
                       <PolarAngleAxis dataKey="subject" stroke="#64748b" fontSize={9} fontWeight="bold" />
                       <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#94a3b8" fontSize={9} />
-                      <Radar name="Student Grade Percent" dataKey="Performance" stroke="#3525cd" fill="#3525cd" fillOpacity={0.15} />
+                      <Radar name="Student Grade Percent" dataKey="Performance" stroke="#9333ea" fill="#9333ea" fillOpacity={0.15} />
                       <Tooltip formatter={(value) => [`${value}%`]} />
                       <Legend wrapperStyle={{ fontSize: '10px', fontWeight: 'bold' }} />
                     </RadarChart>
@@ -1024,7 +1024,7 @@ export default function ScoresView({
                       <XAxis dataKey="term" stroke="#94a3b8" fontSize={10} fontWeight="bold" />
                       <YAxis stroke="#94a3b8" fontSize={10} fontWeight="bold" tickFormatter={(v) => `${v}%`} />
                       <Tooltip formatter={(value) => [`${value}%`]} />
-                      <Line type="monotone" dataKey="Score %" stroke="#3525cd" strokeWidth={3} activeDot={{ r: 6 }} />
+                      <Line type="monotone" dataKey="Score %" stroke="#9333ea" strokeWidth={3} activeDot={{ r: 6 }} />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -1045,7 +1045,7 @@ export default function ScoresView({
         <div className="space-y-6">
           <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm space-y-4">
             <div className="flex items-center gap-2">
-              <SlidersHorizontal className="w-5 h-5 text-[#3525cd]" />
+              <SlidersHorizontal className="w-5 h-5 text-[#9333ea]" />
               <h3 className="font-extrabold text-slate-900 text-xs uppercase tracking-wide">Class Rankings & Visual Grids</h3>
             </div>
 
@@ -1157,7 +1157,7 @@ export default function ScoresView({
                           badgeBg = 'bg-emerald-50 text-emerald-800 border-emerald-200';
                           labelWord = 'A / Exclt';
                         } else if (percent >= 60) {
-                          badgeBg = 'bg-indigo-50 text-indigo-800 border-indigo-200';
+                          badgeBg = 'bg-purple-50 text-purple-800 border-purple-200';
                           labelWord = 'B / Good';
                         } else if (percent >= 45) {
                           badgeBg = 'bg-amber-50 text-amber-800 border-amber-200';
@@ -1266,9 +1266,9 @@ export default function ScoresView({
                 </div>
               </div>
 
-              <div className="text-xs font-bold text-slate-700 bg-indigo-50/50 p-3 rounded-xl border border-indigo-100/50 flex justify-between items-center">
+              <div className="text-xs font-bold text-slate-700 bg-purple-50/50 p-3 rounded-xl border border-purple-100/50 flex justify-between items-center">
                 <span>Calculated Total:</span>
-                <span className="text-[#3525cd] font-black text-sm">
+                <span className="text-[#9333ea] font-black text-sm">
                   {(parseFloat(editCatVal) || 0) + (parseFloat(editExamVal) || 0)} / 100
                 </span>
               </div>
@@ -1283,7 +1283,7 @@ export default function ScoresView({
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] text-white rounded-xl text-xs font-bold shadow-md"
+                  className="flex-1 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] text-white rounded-xl text-xs font-bold shadow-md"
                 >
                   Apply Update
                 </button>

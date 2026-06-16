@@ -49,7 +49,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
         {/* Total Students KPI */}
         <div 
           onClick={() => onNavigate('students')}
-          className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex justify-between items-center group hover:border-[#4f46e5]/40 hover:shadow-md transition-all duration-300 cursor-pointer active:scale-[0.98]"
+          className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex justify-between items-center group hover:border-[#7e22ce]/40 hover:shadow-md transition-all duration-300 cursor-pointer active:scale-[0.98]"
         >
           <div className="space-y-1.5">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
@@ -68,7 +68,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
               </span>
             </div>
           </div>
-          <div className="w-12 h-12 bg-indigo-50 text-indigo-650 rounded-xl flex items-center justify-center group-hover:bg-[#3525cd] group-hover:text-white transition-all duration-305">
+          <div className="w-12 h-12 bg-purple-50 text-purple-650 rounded-xl flex items-center justify-center group-hover:bg-[#9333ea] group-hover:text-white transition-all duration-305">
             <Users className="w-5 h-5" />
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
         {/* Total Subjects KPI */}
         <div 
           onClick={() => onNavigate('subjects')}
-          className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex justify-between items-center group hover:border-[#4f46e5]/40 hover:shadow-md transition-all duration-300 cursor-pointer active:scale-[0.98]"
+          className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex justify-between items-center group hover:border-[#7e22ce]/40 hover:shadow-md transition-all duration-300 cursor-pointer active:scale-[0.98]"
         >
           <div className="space-y-1.5">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
@@ -101,7 +101,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
         </div>
 
         {/* Avg Performance Sparkline KPI */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-4 group hover:border-[#4f46e5]/40 hover:shadow-md transition-all duration-300">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-4 group hover:border-[#7e22ce]/40 hover:shadow-md transition-all duration-300">
           <div className="flex justify-between items-start">
             <div className="space-y-1.5">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
@@ -130,15 +130,15 @@ export default function DashboardView({ students, streams, activities, onNavigat
             <svg className="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="gradient-avg" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.0" />
+                  <stop offset="0%" stopColor="#7e22ce" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#7e22ce" stopOpacity="0.0" />
                 </linearGradient>
               </defs>
               <path 
                 className="path-animate"
                 d="M0,32 Q15,8 30,28 T60,18 T80,8 T100,22" 
                 fill="none" 
-                stroke="#3525cd" 
+                stroke="#9333ea" 
                 strokeWidth="2" 
                 vectorEffect="non-scaling-stroke"
               />
@@ -155,7 +155,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
       <div className="grid grid-cols-2 gap-4">
         <button 
           onClick={() => onNavigate('students', { openAddModal: true })}
-          className="flex flex-col items-center justify-center gap-3 bg-[#3525cd] text-white p-6 rounded-2xl border border-indigo-700 shadow-sm hover:bg-[#4f46e5] hover:scale-[1.01] hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer"
+          className="flex flex-col items-center justify-center gap-3 bg-[#9333ea] text-white p-6 rounded-2xl border border-purple-700 shadow-sm hover:bg-[#7e22ce] hover:scale-[1.01] hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer"
         >
           <PlusCircle className="w-7 h-7 stroke-[1.5]" />
           <span className="text-sm font-bold tracking-tight">Register Student Profile</span>
@@ -163,10 +163,10 @@ export default function DashboardView({ students, streams, activities, onNavigat
 
         <button 
           onClick={() => onNavigate('scores')}
-          className="flex flex-col items-center justify-center gap-3 bg-[#eaedff] text-slate-800 p-6 rounded-2xl border border-slate-200 shadow-sm hover:bg-[#e2e7ff] hover:scale-[1.01] active:scale-95 transition-all duration-200 cursor-pointer"
+          className="flex flex-col items-center justify-center gap-3 bg-[#f3e8ff] text-slate-800 p-6 rounded-2xl border border-slate-200 shadow-sm hover:bg-[#e2e7ff] hover:scale-[1.01] active:scale-95 transition-all duration-200 cursor-pointer"
         >
-          <FileSpreadsheet className="w-7 h-7 text-[#3525cd] stroke-[1.5]" />
-          <span className="text-sm font-bold tracking-tight text-[#3525cd]">Record Scores</span>
+          <FileSpreadsheet className="w-7 h-7 text-[#9333ea] stroke-[1.5]" />
+          <span className="text-sm font-bold tracking-tight text-[#9333ea]">Record Scores</span>
         </button>
       </div>
 
@@ -203,7 +203,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
           {/* Form Level Distribution */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
-              <GraduationCap className="w-5 h-5 text-[#3525cd]" />
+              <GraduationCap className="w-5 h-5 text-[#9333ea]" />
               <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Students Per Form Level</h3>
             </div>
             <div className="space-y-4">
@@ -218,7 +218,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
                     </div>
                     <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                       <div 
-                        className="bg-[#3525cd] h-full rounded-full transition-all duration-500" 
+                        className="bg-[#9333ea] h-full rounded-full transition-all duration-500" 
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -231,7 +231,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
           {/* Stream letter Distribution */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
-              <BarChart2 className="w-5 h-5 text-[#3525cd]" />
+              <BarChart2 className="w-5 h-5 text-[#9333ea]" />
               <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Students Per Stream</h3>
             </div>
             <div className="space-y-4">
@@ -246,7 +246,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
                     </div>
                     <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                       <div 
-                        className="bg-indigo-500 h-full rounded-full transition-all duration-500" 
+                        className="bg-purple-500 h-full rounded-full transition-all duration-500" 
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -266,7 +266,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
           </h3>
           <button 
             onClick={() => onNavigate('students')}
-            className="text-xs font-bold text-[#3525cd] hover:underline transition-all"
+            className="text-xs font-bold text-[#9333ea] hover:underline transition-all"
           >
             View Student registry
           </button>
@@ -281,7 +281,7 @@ export default function DashboardView({ students, streams, activities, onNavigat
               <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105 ${
                 activity.type === 'enrollment' 
                   ? 'bg-emerald-100 text-emerald-700' 
-                  : 'bg-indigo-100 text-[#3525cd]'
+                  : 'bg-purple-100 text-[#9333ea]'
               }`}>
                 {activity.type === 'enrollment' ? (
                   <PlusCircle className="w-4 h-4" />

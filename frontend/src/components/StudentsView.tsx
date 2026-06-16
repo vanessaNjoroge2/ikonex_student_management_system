@@ -742,7 +742,7 @@ export default function StudentsView({
             <div className="relative">
               <button 
                 onClick={(e) => startEdit(selectedStudent, e)}
-                className="p-2.5 bg-indigo-50 hover:bg-indigo-100 text-[#3525cd] rounded-xl transition-all flex items-center gap-1.5 cursor-pointer text-xs font-bold"
+                className="p-2.5 bg-purple-50 hover:bg-purple-100 text-[#9333ea] rounded-xl transition-all flex items-center gap-1.5 cursor-pointer text-xs font-bold"
                 title="Edit student"
               >
                 <Edit className="w-3.5 h-3.5" />
@@ -756,7 +756,7 @@ export default function StudentsView({
             <form onSubmit={handleEditSubmit} className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-md space-y-6">
               <div className="flex justify-between items-center border-b border-slate-100 pb-3">
                 <div className="flex items-center gap-2">
-                  <Edit className="w-5 h-5 text-[#3525cd]" />
+                  <Edit className="w-5 h-5 text-[#9333ea]" />
                   <span className="text-sm font-bold text-slate-900">Modify Student Profile</span>
                 </div>
                 <button 
@@ -778,14 +778,14 @@ export default function StudentsView({
               <div className="space-y-6">
                 {/* Section 1: Personal Details */}
                 <div className="space-y-4">
-                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2">Section 1: Personal Details</h4>
+                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2">Section 1: Personal Details</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[10px] font-bold text-slate-500 uppercase">Student Full Name</label>
                       <input 
                         value={editForm.fullName}
                         onChange={(e) => setEditForm({...editForm, fullName: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                     <div>
@@ -793,7 +793,7 @@ export default function StudentsView({
                       <input 
                         value={editForm.admissionNumber}
                         onChange={(e) => setEditForm({...editForm, admissionNumber: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                   </div>
@@ -803,7 +803,7 @@ export default function StudentsView({
                       <select 
                         value={editForm.gender}
                         onChange={(e) => setEditForm({...editForm, gender: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none bg-white font-semibold text-slate-700"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none bg-white font-semibold text-slate-700"
                       >
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -816,7 +816,7 @@ export default function StudentsView({
                         type="date"
                         value={editForm.dateOfBirth}
                         onChange={(e) => setEditForm({...editForm, dateOfBirth: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                     <div>
@@ -824,7 +824,7 @@ export default function StudentsView({
                       <input 
                         value={editForm.nationality}
                         onChange={(e) => setEditForm({...editForm, nationality: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                   </div>
@@ -836,7 +836,7 @@ export default function StudentsView({
                         value={editForm.email}
                         onChange={(e) => setEditForm({...editForm, email: e.target.value})}
                         placeholder="student@example.com"
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                     <div>
@@ -845,7 +845,7 @@ export default function StudentsView({
                         value={editForm.image}
                         onChange={(e) => setEditForm({...editForm, image: e.target.value})}
                         placeholder="https://..."
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                   </div>
@@ -853,14 +853,14 @@ export default function StudentsView({
 
                 {/* Section 2: Academic Info */}
                 <div className="space-y-4">
-                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2">Section 2: Academic Details</h4>
+                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2">Section 2: Academic Details</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div>
                       <label className="text-[10px] font-bold text-slate-500 uppercase">Form Level</label>
                       <select 
                         value={editForm.formLevel}
                         onChange={(e) => setEditForm({...editForm, formLevel: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none bg-white font-semibold text-slate-700"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none bg-white font-semibold text-slate-700"
                       >
                         <option value="Form 1">Form 1</option>
                         <option value="Form 2">Form 2</option>
@@ -873,7 +873,7 @@ export default function StudentsView({
                       <select 
                         value={editForm.stream}
                         onChange={(e) => setEditForm({...editForm, stream: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none bg-white font-semibold text-slate-700"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none bg-white font-semibold text-slate-700"
                       >
                         <option value="A">A</option>
                         <option value="B">B</option>
@@ -887,7 +887,7 @@ export default function StudentsView({
                         type="number"
                         value={editForm.kcpeScore}
                         onChange={(e) => setEditForm({...editForm, kcpeScore: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none font-semibold text-indigo-750"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none font-semibold text-purple-750"
                       />
                     </div>
                     <div>
@@ -895,7 +895,7 @@ export default function StudentsView({
                       <select 
                         value={editForm.enrollmentStatus}
                         onChange={(e) => setEditForm({...editForm, enrollmentStatus: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none bg-white font-semibold text-slate-700"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none bg-white font-semibold text-slate-700"
                       >
                         <option value="ACTIVE">ACTIVE</option>
                         <option value="INACTIVE">INACTIVE</option>
@@ -910,21 +910,21 @@ export default function StudentsView({
                       type="date"
                       value={editForm.admissionDate}
                       onChange={(e) => setEditForm({...editForm, admissionDate: e.target.value})}
-                      className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                      className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Section 3: Parent/Guardian Details */}
                 <div className="space-y-4">
-                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2">Section 3: Guardian Details</h4>
+                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2">Section 3: Guardian Details</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[10px] font-bold text-slate-500 uppercase">Guardian Name</label>
                       <input 
                         value={editForm.parentName}
                         onChange={(e) => setEditForm({...editForm, parentName: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                     <div>
@@ -932,7 +932,7 @@ export default function StudentsView({
                       <select 
                         value={editForm.relationship}
                         onChange={(e) => setEditForm({...editForm, relationship: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none bg-white font-semibold text-slate-700"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none bg-white font-semibold text-slate-700"
                       >
                         <option value="Father">Father</option>
                         <option value="Mother">Mother</option>
@@ -948,7 +948,7 @@ export default function StudentsView({
                         value={editForm.parentPhone}
                         onChange={(e) => setEditForm({...editForm, parentPhone: e.target.value})}
                         placeholder="e.g. +254 700 000 000"
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                     <div>
@@ -957,7 +957,7 @@ export default function StudentsView({
                         value={editForm.altPhone}
                         onChange={(e) => setEditForm({...editForm, altPhone: e.target.value})}
                         placeholder="e.g. +254 711 000 000"
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                   </div>
@@ -965,7 +965,7 @@ export default function StudentsView({
 
                 {/* Section 4: School Details */}
                 <div className="space-y-4">
-                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2">Section 4: School Details & Remarks</h4>
+                  <h4 className="text-[11px] font-bold tracking-wider text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2">Section 4: School Details & Remarks</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[10px] font-bold text-slate-500 uppercase">Attendance Rate (%)</label>
@@ -973,7 +973,7 @@ export default function StudentsView({
                         type="number"
                         value={editForm.attendancePercentage}
                         onChange={(e) => setEditForm({...editForm, attendancePercentage: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none"
                       />
                     </div>
                     <div>
@@ -982,7 +982,7 @@ export default function StudentsView({
                         value={editForm.remarks}
                         onChange={(e) => setEditForm({...editForm, remarks: e.target.value})}
                         rows={2}
-                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-100 outline-none font-sans"
+                        className="w-full mt-1 p-2.5 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-100 outline-none font-sans"
                       />
                     </div>
                   </div>
@@ -998,7 +998,7 @@ export default function StudentsView({
                   </button>
                   <button 
                     type="submit" 
-                    className="flex-1 bg-[#3525cd] text-white py-3 rounded-xl font-bold text-xs shadow-md shadow-indigo-600/15 cursor-pointer hover:bg-[#4f46e5] transition-all"
+                    className="flex-1 bg-[#9333ea] text-white py-3 rounded-xl font-bold text-xs shadow-md shadow-purple-600/15 cursor-pointer hover:bg-[#7e22ce] transition-all"
                   >
                     Save Changes
                   </button>
@@ -1020,7 +1020,7 @@ export default function StudentsView({
                   />
                 </div>
               ) : (
-                <div className="w-28 h-28 rounded-3xl bg-indigo-50 border border-indigo-100 flex items-center justify-center font-black text-3xl text-[#3525cd] shadow-sm shrink-0">
+                <div className="w-28 h-28 rounded-3xl bg-purple-50 border border-purple-100 flex items-center justify-center font-black text-3xl text-[#9333ea] shadow-sm shrink-0">
                   {(selectedStudent.fullName || selectedStudent.name).split(' ').map(n=>n[0]).join('').slice(0, 2)}
                 </div>
               )}
@@ -1048,8 +1048,8 @@ export default function StudentsView({
                 <div className="px-3 py-1.5 bg-slate-50 border border-slate-200/60 rounded-xl text-[11px] font-bold text-slate-600">
                   Adm No: <span className="text-slate-900 font-extrabold font-mono">{selectedStudent.admissionNumber}</span>
                 </div>
-                <div className="px-3 py-1.5 bg-[#eaedff] border border-indigo-100 rounded-xl text-[11px] font-bold text-indigo-700">
-                  KCPE: <span className="text-indigo-950 font-black">{selectedStudent.kcpeScore} pts</span>
+                <div className="px-3 py-1.5 bg-[#f3e8ff] border border-purple-100 rounded-xl text-[11px] font-bold text-purple-700">
+                  KCPE: <span className="text-purple-950 font-black">{selectedStudent.kcpeScore} pts</span>
                 </div>
               </div>
             </div>
@@ -1061,7 +1061,7 @@ export default function StudentsView({
               onClick={() => setActiveProfileTab('personal')}
               className={`flex-1 py-2.5 text-center font-bold text-xs rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                 activeProfileTab === 'personal'
-                  ? 'bg-[#eaedff] text-[#3525cd]'
+                  ? 'bg-[#f3e8ff] text-[#9333ea]'
                   : 'text-slate-500 hover:bg-slate-50'
               }`}
             >
@@ -1072,7 +1072,7 @@ export default function StudentsView({
               onClick={() => setActiveProfileTab('academic')}
               className={`flex-1 py-2.5 text-center font-bold text-xs rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                 activeProfileTab === 'academic'
-                  ? 'bg-[#eaedff] text-[#3525cd]'
+                  ? 'bg-[#f3e8ff] text-[#9333ea]'
                   : 'text-slate-500 hover:bg-slate-50'
               }`}
             >
@@ -1083,7 +1083,7 @@ export default function StudentsView({
               onClick={() => setActiveProfileTab('guardian')}
               className={`flex-1 py-2.5 text-center font-bold text-xs rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                 activeProfileTab === 'guardian'
-                  ? 'bg-[#eaedff] text-[#3525cd]'
+                  ? 'bg-[#f3e8ff] text-[#9333ea]'
                   : 'text-slate-500 hover:bg-slate-50'
               }`}
             >
@@ -1094,7 +1094,7 @@ export default function StudentsView({
               onClick={() => setActiveProfileTab('performance')}
               className={`flex-1 py-2.5 text-center font-bold text-xs rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                 activeProfileTab === 'performance'
-                  ? 'bg-[#eaedff] text-[#3525cd]'
+                  ? 'bg-[#f3e8ff] text-[#9333ea]'
                   : 'text-slate-500 hover:bg-slate-50'
               }`}
             >
@@ -1107,7 +1107,7 @@ export default function StudentsView({
           {activeProfileTab === 'personal' && (
             <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-4 animate-in fade-in duration-300">
               <h4 className="text-xs font-bold tracking-widest text-slate-450 uppercase pb-2 border-b border-slate-100 flex items-center gap-2">
-                <User className="w-4 h-4 text-[#3525cd]" />
+                <User className="w-4 h-4 text-[#9333ea]" />
                 Student Personal Information
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs pt-2">
@@ -1142,7 +1142,7 @@ export default function StudentsView({
           {activeProfileTab === 'academic' && (
             <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-4 animate-in fade-in duration-300">
               <h4 className="text-xs font-bold tracking-widest text-slate-450 uppercase pb-2 border-b border-slate-100 flex items-center gap-2">
-                <GraduationCap className="w-4 h-4 text-[#3525cd]" />
+                <GraduationCap className="w-4 h-4 text-[#9333ea]" />
                 Student Academic Profile
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs pt-2">
@@ -1160,7 +1160,7 @@ export default function StudentsView({
                 </div>
                 <div className="space-y-1">
                   <p className="text-slate-400 font-bold uppercase text-[9px] tracking-wide">KCPE Enrollment Score</p>
-                  <p className="font-extrabold text-indigo-700 text-sm font-mono">{selectedStudent.kcpeScore} / 500</p>
+                  <p className="font-extrabold text-purple-700 text-sm font-mono">{selectedStudent.kcpeScore} / 500</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-slate-400 font-bold uppercase text-[9px] tracking-wide">Attendance Percentage (%)</p>
@@ -1183,7 +1183,7 @@ export default function StudentsView({
           {activeProfileTab === 'guardian' && (
             <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-4 animate-in fade-in duration-300">
               <h4 className="text-xs font-bold tracking-widest text-slate-450 uppercase pb-2 border-b border-slate-100 flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#3525cd]" />
+                <Phone className="w-4 h-4 text-[#9333ea]" />
                 Parent & Guardian Information
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs pt-2">
@@ -1197,7 +1197,7 @@ export default function StudentsView({
                 </div>
                 <div className="space-y-1">
                   <p className="text-slate-400 font-bold uppercase text-[9px] tracking-wide">Primary Contact Phone</p>
-                  <p className="font-extrabold text-[#3525cd] text-xs font-mono">{selectedStudent.parentPhone || 'N/A'}</p>
+                  <p className="font-extrabold text-[#9333ea] text-xs font-mono">{selectedStudent.parentPhone || 'N/A'}</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-slate-400 font-bold uppercase text-[9px] tracking-wide">Alternative Contact Phone</p>
@@ -1224,9 +1224,9 @@ export default function StudentsView({
               </div>
 
               {/* Prominent Overall Total Display */}
-              <div className="bg-gradient-to-br from-[#4f46e5] to-[#3525cd] rounded-2xl p-6 text-white shadow-md flex justify-between items-center">
+              <div className="bg-gradient-to-br from-[#7e22ce] to-[#9333ea] rounded-2xl p-6 text-white shadow-md flex justify-between items-center">
                 <div className="space-y-1">
-                  <p className="text-[10px] font-bold tracking-widest uppercase text-indigo-150">Overall Term Total</p>
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-purple-150">Overall Term Total</p>
                   <p className="text-3xl font-black">{overallTotalScore} / {overallTotalMax}</p>
                 </div>
                 <Award className="w-10 h-10 text-white/20 stroke-[1.5]" />
@@ -1250,11 +1250,11 @@ export default function StudentsView({
                         <td className="p-3 text-slate-900 font-bold">{row.subject}</td>
                         <td className="p-3 text-center font-mono">{row.cat}</td>
                         <td className="p-3 text-center font-mono">{row.exam}</td>
-                        <td className="p-3 text-center font-mono font-bold text-[#3525cd]">{row.total} / 100</td>
+                        <td className="p-3 text-center font-mono font-bold text-[#9333ea]">{row.total} / 100</td>
                         <td className="p-3 text-right font-black text-xs">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-black ${
                             row.grade === 'A' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
-                            row.grade === 'B' ? 'bg-[#eaedff] text-[#3525cd] border border-indigo-100' :
+                            row.grade === 'B' ? 'bg-[#f3e8ff] text-[#9333ea] border border-purple-100' :
                             row.grade === 'C' ? 'bg-amber-50 text-amber-700 border border-amber-200' :
                             row.grade === 'D' ? 'bg-orange-50 text-orange-700 border border-orange-200' :
                             'bg-rose-50 text-rose-700 border border-rose-200'
@@ -1305,7 +1305,7 @@ export default function StudentsView({
                   {loadingScores ? (
                     <div className="h-[280px] flex items-center justify-center bg-slate-50 rounded-xl border border-dashed border-slate-200">
                       <div className="text-center space-y-2">
-                        <div className="w-8 h-8 rounded-full border-4 border-indigo-250 border-t-[#3525cd] animate-spin mx-auto"></div>
+                        <div className="w-8 h-8 rounded-full border-4 border-purple-250 border-t-[#9333ea] animate-spin mx-auto"></div>
                         <p className="text-xs font-semibold text-slate-400">Loading breakdown charts...</p>
                       </div>
                     </div>
@@ -1335,7 +1335,7 @@ export default function StudentsView({
                   {loadingScores ? (
                     <div className="h-[260px] flex items-center justify-center bg-slate-50 rounded-xl border border-dashed border-slate-200">
                       <div className="text-center space-y-2">
-                        <div className="w-8 h-8 rounded-full border-4 border-indigo-250 border-t-[#3525cd] animate-spin mx-auto"></div>
+                        <div className="w-8 h-8 rounded-full border-4 border-purple-250 border-t-[#9333ea] animate-spin mx-auto"></div>
                         <p className="text-xs font-semibold text-slate-400">Loading trend charts...</p>
                       </div>
                     </div>
@@ -1365,7 +1365,7 @@ export default function StudentsView({
               Students Registry
             </h2>
             <div className="text-xs font-semibold text-slate-400">
-              Total: <span className="text-[#3525cd] font-bold">{filteredStudents.length} students</span>
+              Total: <span className="text-[#9333ea] font-bold">{filteredStudents.length} students</span>
             </div>
           </div>
 
@@ -1373,21 +1373,21 @@ export default function StudentsView({
           <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
             <div className="flex gap-2">
               <div className="relative flex-1 group">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-[#3525cd] group-focus-within:scale-105 transition-all duration-300" />
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-[#9333ea] group-focus-within:scale-105 transition-all duration-300" />
                 <input 
                   type="text"
                   value={searchQuery}
                   aria-label="Search students"
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search students by full name, admission number..."
-                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-150/15 focus:border-[#3525cd] transition-all duration-305 text-xs font-semibold shadow-inner"
+                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-purple-150/15 focus:border-[#9333ea] transition-all duration-305 text-xs font-semibold shadow-inner"
                 />
               </div>
               <button 
                 onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
                 className={`p-2.5 rounded-xl border transition-all flex items-center gap-1 text-xs font-bold shadow-sm ${
                   showAdvancedFilters || formFilter !== 'all' || streamFilter !== 'all' || statusFilter !== 'all'
-                    ? 'border-[#3525cd] bg-[#eaedff] text-[#3525cd]'
+                    ? 'border-[#9333ea] bg-[#f3e8ff] text-[#9333ea]'
                     : 'border-slate-200 bg-white text-slate-650 hover:bg-slate-550'
                 }`}
               >
@@ -1470,13 +1470,13 @@ export default function StudentsView({
                 filteredStudents.map((student) => (
                   <div 
                     key={student.id}
-                    className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white group hover:border-[#4f46e5]/40 transition-all duration-300 flex shadow-sm hover:shadow-md"
+                    className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white group hover:border-[#7e22ce]/40 transition-all duration-300 flex shadow-sm hover:shadow-md"
                   >
                     {/* Swiped Action Overlay elements */}
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 gap-2 bg-slate-50 border-l border-slate-100 px-4 transition-transform z-10">
                       <button 
                         onClick={(e) => startEdit(student, e)}
-                        className="p-2 rounded-xl bg-[#eaedff] text-[#3525cd] hover:bg-[#3525cd] hover:text-white transition-all cursor-pointer"
+                        className="p-2 rounded-xl bg-[#f3e8ff] text-[#9333ea] hover:bg-[#9333ea] hover:text-white transition-all cursor-pointer"
                         title="Edit Student"
                       >
                         <Edit className="w-3.5 h-3.5" />
@@ -1513,7 +1513,7 @@ export default function StudentsView({
                           />
                         </div>
                       ) : (
-                        <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center font-extrabold text-sm text-[#3525cd] shrink-0 border border-indigo-100">
+                        <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center font-extrabold text-sm text-[#9333ea] shrink-0 border border-purple-100">
                           {(student.fullName || student.name).split(' ').map(n=>n[0]).join('').slice(0, 2)}
                         </div>
                       )}
@@ -1556,7 +1556,7 @@ export default function StudentsView({
           {/* Floating Action Button '+' for Screen B student registration */}
           <button 
             onClick={() => setIsAddModalOpen(true)}
-            className="fixed bottom-24 right-4 md:bottom-6 md:right-6 w-14 h-14 bg-[#3525cd] text-white rounded-full shadow-lg hover:bg-[#4f46e5] hover:scale-105 active:scale-95 transition-all flex items-center justify-center z-40 cursor-pointer"
+            className="fixed bottom-24 right-4 md:bottom-6 md:right-6 w-14 h-14 bg-[#9333ea] text-white rounded-full shadow-lg hover:bg-[#7e22ce] hover:scale-105 active:scale-95 transition-all flex items-center justify-center z-40 cursor-pointer"
             title="Add student"
           >
             <Plus className="w-6 h-6 stroke-[2.5]" />
@@ -1566,7 +1566,7 @@ export default function StudentsView({
           {isAddModalOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
               <div className="bg-white w-full max-w-lg rounded-3xl border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200 my-8">
-                <div className="bg-[#3525cd] text-white p-5 flex justify-between items-center">
+                <div className="bg-[#9333ea] text-white p-5 flex justify-between items-center">
                   <div className="flex items-center gap-2">
                      <GraduationCap className="w-5 h-5 text-[#dad7ff]" />
                      <h3 className="text-sm font-black">Register Student Profile</h3>
@@ -1576,7 +1576,7 @@ export default function StudentsView({
                       setIsAddModalOpen(false);
                       setErrorText('');
                     }}
-                    className="p-1 hover:bg-white/10 rounded-full text-indigo-100 cursor-pointer"
+                    className="p-1 hover:bg-white/10 rounded-full text-purple-100 cursor-pointer"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -1592,7 +1592,7 @@ export default function StudentsView({
 
                   {/* Section 1: Personal Information */}
                   <div className="space-y-3">
-                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2 mb-2">Section 1: Personal details</h4>
+                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2 mb-2">Section 1: Personal details</h4>
                     <div>
                       <label className="text-[9px] font-bold text-slate-500 uppercase">Student Full Name</label>
                       <input 
@@ -1600,7 +1600,7 @@ export default function StudentsView({
                         value={addForm.fullName}
                         onChange={(e) => setAddForm({...addForm, fullName: e.target.value})}
                         placeholder="e.g. Vanessa Njoroge"
-                        className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-3">
@@ -1611,7 +1611,7 @@ export default function StudentsView({
                           value={addForm.admissionNumber}
                           onChange={(e) => setAddForm({...addForm, admissionNumber: e.target.value})}
                           placeholder="e.g. 8421"
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs font-semibold font-mono outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs font-semibold font-mono outline-none"
                         />
                       </div>
                       <div>
@@ -1634,7 +1634,7 @@ export default function StudentsView({
                           type="date"
                           value={addForm.dateOfBirth}
                           onChange={(e) => setAddForm({...addForm, dateOfBirth: e.target.value})}
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -1643,7 +1643,7 @@ export default function StudentsView({
                           type="text"
                           value={addForm.nationality}
                           onChange={(e) => setAddForm({...addForm, nationality: e.target.value})}
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                     </div>
@@ -1655,7 +1655,7 @@ export default function StudentsView({
                           value={addForm.email}
                           onChange={(e) => setAddForm({...addForm, email: e.target.value})}
                           placeholder="student@example.com"
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -1665,7 +1665,7 @@ export default function StudentsView({
                           value={addForm.image}
                           onChange={(e) => setAddForm({...addForm, image: e.target.value})}
                           placeholder="https://..."
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                     </div>
@@ -1673,7 +1673,7 @@ export default function StudentsView({
 
                   {/* Section 2: Academic Details */}
                   <div className="space-y-3">
-                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2 mb-2">Section 2: Academic information</h4>
+                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2 mb-2">Section 2: Academic information</h4>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-[9px] font-bold text-slate-500 uppercase">Form Assignment</label>
@@ -1709,7 +1709,7 @@ export default function StudentsView({
                           type="number"
                           value={addForm.kcpeScore}
                           onChange={(e) => setAddForm({...addForm, kcpeScore: e.target.value})}
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs font-semibold text-indigo-800 outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs font-semibold text-purple-800 outline-none"
                         />
                       </div>
                       <div>
@@ -1732,14 +1732,14 @@ export default function StudentsView({
                         type="date"
                         value={addForm.admissionDate}
                         onChange={(e) => setAddForm({...addForm, admissionDate: e.target.value})}
-                        className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs font-semibold outline-none"
+                        className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs font-semibold outline-none"
                       />
                     </div>
                   </div>
 
                   {/* Section 3: Parent/Guardian Details */}
                   <div className="space-y-3">
-                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2 mb-2">Section 3: Parent/Guardian information</h4>
+                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2 mb-2">Section 3: Parent/Guardian information</h4>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-[9px] font-bold text-slate-500 uppercase">Guardian Name</label>
@@ -1748,7 +1748,7 @@ export default function StudentsView({
                           value={addForm.parentName}
                           onChange={(e) => setAddForm({...addForm, parentName: e.target.value})}
                           placeholder="e.g. Florence Njoroge"
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -1773,7 +1773,7 @@ export default function StudentsView({
                           value={addForm.parentPhone}
                           onChange={(e) => setAddForm({...addForm, parentPhone: e.target.value})}
                           placeholder="+254 700 123 456"
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -1783,7 +1783,7 @@ export default function StudentsView({
                           value={addForm.altPhone}
                           onChange={(e) => setAddForm({...addForm, altPhone: e.target.value})}
                           placeholder="+254 711 123 456"
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                     </div>
@@ -1791,7 +1791,7 @@ export default function StudentsView({
 
                   {/* Section 4: School Info */}
                   <div className="space-y-3">
-                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#3525cd] pl-2 mb-2">Section 4: Schooling & remarks</h4>
+                    <h4 className="text-[10px] font-black tracking-widest text-slate-400 uppercase border-l-2 border-[#9333ea] pl-2 mb-2">Section 4: Schooling & remarks</h4>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-[9px] font-bold text-slate-500 uppercase">Attendance (%)</label>
@@ -1799,7 +1799,7 @@ export default function StudentsView({
                           type="number"
                           value={addForm.attendancePercentage}
                           onChange={(e) => setAddForm({...addForm, attendancePercentage: e.target.value})}
-                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs outline-none"
+                          className="w-full mt-1 p-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -1808,7 +1808,7 @@ export default function StudentsView({
                           value={addForm.remarks}
                           onChange={(e) => setAddForm({...addForm, remarks: e.target.value})}
                           rows={2}
-                          className="w-full mt-1 p-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-100 rounded-xl text-xs font-sans outline-none"
+                          className="w-full mt-1 p-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-100 rounded-xl text-xs font-sans outline-none"
                         />
                       </div>
                     </div>
@@ -1816,7 +1816,7 @@ export default function StudentsView({
 
                   <button 
                     type="submit"
-                    className="w-full bg-[#3525cd] text-white p-3.5 rounded-xl font-bold text-xs shadow-md shadow-indigo-600/15 cursor-pointer hover:bg-[#4f46e5] active:scale-[0.98] transition-all"
+                    className="w-full bg-[#9333ea] text-white p-3.5 rounded-xl font-bold text-xs shadow-md shadow-purple-600/15 cursor-pointer hover:bg-[#7e22ce] active:scale-[0.98] transition-all"
                   >
                     Confirm Student Registration
                   </button>

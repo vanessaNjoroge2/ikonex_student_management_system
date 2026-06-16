@@ -253,7 +253,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
           {/* SECTION 1: MY PROFILE DETAILS (Accessible to all accounts) */}
           <section className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-              <User className="w-5 h-5 text-[#3525cd]" />
+              <User className="w-5 h-5 text-[#9333ea]" />
               <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
                 My Profile Details
               </h3>
@@ -270,7 +270,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                     type="text"
                     value={profileName}
                     onChange={(e) => setProfileName(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                   />
                 </div>
 
@@ -283,7 +283,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                     type="email"
                     value={profileEmail}
                     onChange={(e) => setProfileEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                   />
                 </div>
 
@@ -297,7 +297,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                     placeholder="••••••••"
                     value={profilePassword}
                     onChange={(e) => setProfilePassword(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                   />
                 </div>
 
@@ -311,7 +311,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                     placeholder="••••••••"
                     value={profileConfirmPassword}
                     onChange={(e) => setProfileConfirmPassword(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                   />
                 </div>
               </div>
@@ -320,7 +320,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                 <button
                   type="submit"
                   disabled={isSavingProfile}
-                  className="px-5 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] disabled:bg-slate-300 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 flex items-center gap-2 cursor-pointer active:scale-95 transition"
+                  className="px-5 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] disabled:bg-slate-300 text-white rounded-xl text-xs font-bold shadow-md shadow-purple-600/10 flex items-center gap-2 cursor-pointer active:scale-95 transition"
                 >
                   {isSavingProfile ? (
                     <>
@@ -343,7 +343,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
             <>
               <section className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm space-y-4 animate-in fade-in">
               <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                <GraduationCap className="w-5 h-5 text-[#3525cd]" />
+                <GraduationCap className="w-5 h-5 text-[#9333ea]" />
                 <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
                   School Information & Terms
                 </h3>
@@ -353,10 +353,10 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {/* Brand Logo Box */}
                   <div className="flex flex-col items-center justify-center p-4 bg-slate-50 border border-slate-200 rounded-2xl">
-                    <div className="w-16 h-16 rounded-full bg-[#eaedff] flex items-center justify-center text-[#3525cd] text-xl font-black mb-2 shadow-inner border border-[#3525cd]/15">
+                    <div className="w-16 h-16 rounded-full bg-[#f3e8ff] flex items-center justify-center text-[#9333ea] text-xl font-black mb-2 shadow-inner border border-[#9333ea]/15">
                       IK
                     </div>
-                    <span className="text-[10px] font-bold text-[#3525cd] tracking-wide">Logo Brand Installed</span>
+                    <span className="text-[10px] font-bold text-[#9333ea] tracking-wide">Logo Brand Installed</span>
                     <span className="text-[9px] text-slate-400 font-medium">System setup complete</span>
                   </div>
 
@@ -368,7 +368,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                         type="text"
                         value={schoolName}
                         onChange={(e) => setSchoolName(e.target.value)}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                       />
                     </div>
 
@@ -378,7 +378,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                         <select
                           value={term}
                           onChange={(e) => setTerm(e.target.value)}
-                          className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                          className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                         >
                           <option value="Term 1">Term 1 (Winter)</option>
                           <option value="Term 2">Term 2 (Spring)</option>
@@ -391,7 +391,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                         <select
                           value={academicYear}
                           onChange={(e) => setAcademicYear(e.target.value)}
-                          className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                          className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                         >
                           <option value="2025/2026">2025/2026</option>
                           <option value="2026/2027">2026/2027</option>
@@ -406,7 +406,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                   <button
                     type="submit"
                     disabled={isSavingSchool}
-                    className="px-5 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] disabled:bg-slate-300 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 flex items-center gap-2 cursor-pointer active:scale-95 transition"
+                    className="px-5 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] disabled:bg-slate-300 text-white rounded-xl text-xs font-bold shadow-md shadow-purple-600/10 flex items-center gap-2 cursor-pointer active:scale-95 transition"
                   >
                     {isSavingSchool ? (
                       <>
@@ -428,7 +428,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
             <section className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm space-y-4 animate-in fade-in">
               <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                 <div className="flex items-center gap-2">
-                  <Award className="w-5 h-5 text-[#3525cd]" />
+                  <Award className="w-5 h-5 text-[#9333ea]" />
                   <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
                     Grading Scale Configuration
                   </h3>
@@ -451,7 +451,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                   
                   {loadingScales ? (
                     <div className="py-8 text-center text-slate-400 text-xs font-semibold">
-                      <RefreshCw className="w-6 h-6 animate-spin mx-auto text-[#3525cd] mb-2" />
+                      <RefreshCw className="w-6 h-6 animate-spin mx-auto text-[#9333ea] mb-2" />
                       Loading grading ranges...
                     </div>
                   ) : (
@@ -487,7 +487,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                                 <button
                                   type="button"
                                   onClick={() => startEditScale(scale)}
-                                  className="p-1 hover:bg-slate-100 rounded text-slate-500 hover:text-[#3525cd] cursor-pointer"
+                                  className="p-1 hover:bg-slate-100 rounded text-slate-500 hover:text-[#9333ea] cursor-pointer"
                                   title="Edit Scale"
                                 >
                                   <Edit className="w-3.5 h-3.5" />
@@ -529,7 +529,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                       <button
                         type="button"
                         onClick={resetScaleForm}
-                        className="text-[10px] font-bold text-[#3525cd] hover:underline"
+                        className="text-[10px] font-bold text-[#9333ea] hover:underline"
                       >
                         Cancel Edit
                       </button>
@@ -545,7 +545,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                           placeholder="e.g. A+"
                           value={scaleLetter}
                           onChange={(e) => setScaleLetter(e.target.value)}
-                          className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#3525cd] outline-none"
+                          className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#9333ea] outline-none"
                         />
                       </div>
 
@@ -558,7 +558,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                           max="100"
                           value={scaleMinScore}
                           onChange={(e) => setScaleMinScore(Number(e.target.value))}
-                          className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#3525cd] outline-none"
+                          className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#9333ea] outline-none"
                         />
                       </div>
                     </div>
@@ -568,7 +568,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                       <select
                         value={scaleStatus}
                         onChange={(e) => setScaleStatus(e.target.value as 'Pass' | 'Fail')}
-                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#3525cd] outline-none"
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#9333ea] outline-none"
                       >
                         <option value="Pass">Pass</option>
                         <option value="Fail">Fail</option>
@@ -582,13 +582,13 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                         placeholder="Remarks displayed on report cards..."
                         value={scaleRemarks}
                         onChange={(e) => setScaleRemarks(e.target.value)}
-                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#3525cd] outline-none resize-none"
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#9333ea] outline-none resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-2 bg-[#3525cd] hover:bg-[#4f46e5] text-white text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95"
+                      className="w-full py-2 bg-[#9333ea] hover:bg-[#7e22ce] text-white text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>{editingScaleId ? 'Apply Update' : 'Insert Grade Rule'}</span>
@@ -606,7 +606,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
             {/* NOTIFICATIONS CONTAINER */}
             <div className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm space-y-4">
               <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                <Bell className="w-4 h-4 text-[#3525cd]" />
+                <Bell className="w-4 h-4 text-[#9333ea]" />
                 <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
                   Notifications Controls
                 </h3>
@@ -625,7 +625,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                       onChange={(e) => setNotifyEmail(e.target.checked)}
                       className="sr-only peer" 
                     />
-                    <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#3525cd]" />
+                    <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#9333ea]" />
                   </label>
                 </div>
 
@@ -641,7 +641,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                       onChange={(e) => setNotifySms(e.target.checked)}
                       className="sr-only peer" 
                     />
-                    <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#3525cd]" />
+                    <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#9333ea]" />
                   </label>
                 </div>
 
@@ -657,7 +657,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                       onChange={(e) => setNotifyGrades(e.target.checked)}
                       className="sr-only peer" 
                     />
-                    <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#3525cd]" />
+                    <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#9333ea]" />
                   </label>
                 </div>
               </div>
@@ -666,7 +666,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
             {/* SYSTEM CONFIGS CONTAINER */}
             <div className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm space-y-4">
               <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                <Settings className="w-4 h-4 text-[#3525cd]" />
+                <Settings className="w-4 h-4 text-[#9333ea]" />
                 <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
                   System Preferences
                 </h3>
@@ -696,7 +696,7 @@ export default function SettingsView({ token, currentUser, onUpdateUser }: Setti
                   <select
                     value={dateFormat}
                     onChange={(e) => setDateFormat(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#3525cd] outline-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:border-[#9333ea] outline-none"
                   >
                     <option value="YYYY-MM-DD">YYYY-MM-DD (Standard ISO)</option>
                     <option value="DD-MM-YYYY">DD-MM-YYYY (European)</option>

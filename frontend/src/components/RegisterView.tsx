@@ -120,13 +120,13 @@ export default function RegisterView() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-6 relative overflow-hidden">
       {/* Decorative premium gradients matching the dashboard style */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-200/20 blur-[120px]" />
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-200/20 blur-[120px]" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-violet-200/20 blur-[120px]" />
 
       <div className="w-full max-w-md relative z-10 space-y-8 animate-in duration-500 fade-in slide-in-from-bottom-4">
         {/* Brand Header */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center p-3 bg-[#3525cd] text-white rounded-2xl shadow-xl shadow-indigo-600/10 border border-indigo-700/20">
+          <div className="inline-flex items-center justify-center p-3 bg-[#9333ea] text-white rounded-2xl shadow-xl shadow-purple-600/10 border border-purple-700/20">
             <GraduationCap className="w-8 h-8" />
           </div>
           <div className="space-y-1">
@@ -175,7 +175,7 @@ export default function RegisterView() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#3525cd] focus:ring-1 focus:ring-[#3525cd]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-4 py-3 text-xs outline-none transition"
+                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-4 py-3 text-xs outline-none transition"
                 />
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function RegisterView() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="doe@ikonex.edu"
-                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#3525cd] focus:ring-1 focus:ring-[#3525cd]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-4 py-3 text-xs outline-none transition"
+                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-4 py-3 text-xs outline-none transition"
                 />
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function RegisterView() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#3525cd] focus:ring-1 focus:ring-[#3525cd]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-10 py-3 text-xs outline-none transition"
+                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-10 py-3 text-xs outline-none transition"
                 />
                 <button
                   type="button"
@@ -256,7 +256,7 @@ export default function RegisterView() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#3525cd] focus:ring-1 focus:ring-[#3525cd]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-10 py-3 text-xs outline-none transition"
+                  className="w-full bg-slate-50 border border-slate-200 focus:border-[#9333ea] focus:ring-1 focus:ring-[#9333ea]/30 text-slate-800 placeholder-slate-400 rounded-xl pl-10 pr-10 py-3 text-xs outline-none transition"
                 />
                 <button
                   type="button"
@@ -271,7 +271,7 @@ export default function RegisterView() {
             <button
               type="submit"
               disabled={loading || !!success}
-              className="w-full mt-2 bg-[#3525cd] hover:bg-[#4f46e5] disabled:bg-[#3525cd]/50 text-white font-bold text-xs py-3.5 rounded-xl flex items-center justify-center gap-2 transition duration-200 cursor-pointer shadow-lg shadow-indigo-600/10 active:scale-[0.98]"
+              className="w-full mt-2 bg-[#9333ea] hover:bg-[#7e22ce] disabled:bg-[#9333ea]/50 text-white font-bold text-xs py-3.5 rounded-xl flex items-center justify-center gap-2 transition duration-200 cursor-pointer shadow-lg shadow-purple-600/10 active:scale-[0.98]"
             >
               {loading ? (
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -287,7 +287,7 @@ export default function RegisterView() {
           {/* Link to Login */}
           <div className="text-center pt-2 border-t border-slate-100">
             <span className="text-xs text-slate-400">Already registered? </span>
-            <Link to="/login" className="text-xs font-bold text-[#3525cd] hover:underline">
+            <Link to="/login" className="text-xs font-bold text-[#9333ea] hover:underline">
               Sign In
             </Link>
           </div>

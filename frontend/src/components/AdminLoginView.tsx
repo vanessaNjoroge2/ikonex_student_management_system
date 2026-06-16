@@ -65,14 +65,14 @@ export default function AdminLoginView({ onLogin }: AdminLoginViewProps) {
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col justify-center items-center p-6 relative overflow-hidden">
       {/* Premium dark indigo glow background */}
-      <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] rounded-full bg-indigo-500/10 blur-[150px]" />
+      <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] rounded-full bg-purple-500/10 blur-[150px]" />
       <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] rounded-full bg-violet-600/10 blur-[150px]" />
 
       <div className="w-full max-w-md relative z-10 space-y-8 animate-in duration-500 fade-in slide-in-from-bottom-4">
         {/* Brand Header */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center p-3 bg-indigo-650 text-white rounded-2xl shadow-xl shadow-indigo-500/10 border border-indigo-500/20">
-            <Shield className="w-8 h-8 text-indigo-400" />
+          <div className="inline-flex items-center justify-center p-3 bg-purple-650 text-white rounded-2xl shadow-xl shadow-purple-500/10 border border-purple-500/20">
+            <Shield className="w-8 h-8 text-purple-400" />
           </div>
           <div className="space-y-1">
             <h1 className="text-2xl font-extrabold text-white tracking-tight flex items-center justify-center gap-2">
@@ -113,7 +113,7 @@ export default function AdminLoginView({ onLogin }: AdminLoginViewProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@ikonex.edu"
-                  className="w-full bg-slate-900/90 border border-slate-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 text-white placeholder-slate-500 rounded-xl pl-10 pr-4 py-3 text-xs outline-none transition"
+                  className="w-full bg-slate-900/90 border border-slate-800 focus:border-purple-500 focus:ring-1 focus:ring-purple-500/30 text-white placeholder-slate-500 rounded-xl pl-10 pr-4 py-3 text-xs outline-none transition"
                 />
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function AdminLoginView({ onLogin }: AdminLoginViewProps) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-slate-900/90 border border-slate-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 text-white placeholder-slate-500 rounded-xl pl-10 pr-10 py-3 text-xs outline-none transition"
+                  className="w-full bg-slate-900/90 border border-slate-800 focus:border-purple-500 focus:ring-1 focus:ring-purple-500/30 text-white placeholder-slate-500 rounded-xl pl-10 pr-10 py-3 text-xs outline-none transition"
                 />
                 <button
                   type="button"
@@ -149,7 +149,7 @@ export default function AdminLoginView({ onLogin }: AdminLoginViewProps) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-indigo-650/50 text-white font-bold text-xs py-3.5 rounded-xl flex items-center justify-center gap-2 transition duration-200 cursor-pointer shadow-lg shadow-indigo-500/10 active:scale-[0.98]"
+              className="w-full mt-2 bg-purple-600 hover:bg-purple-500 disabled:bg-purple-650/50 text-white font-bold text-xs py-3.5 rounded-xl flex items-center justify-center gap-2 transition duration-200 cursor-pointer shadow-lg shadow-purple-500/10 active:scale-[0.98]"
             >
               {loading ? (
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -165,7 +165,7 @@ export default function AdminLoginView({ onLogin }: AdminLoginViewProps) {
           {/* Link to Teacher Login */}
           <div className="text-center pt-2 border-t border-slate-900">
             <span className="text-xs text-slate-400">Looking for teacher portal? </span>
-            <Link to="/login" className="text-xs font-bold text-indigo-400 hover:underline">
+            <Link to="/login" className="text-xs font-bold text-purple-400 hover:underline">
               Teacher Sign In
             </Link>
           </div>

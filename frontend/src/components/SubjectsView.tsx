@@ -253,7 +253,7 @@ export default function SubjectsView({
         {!selectedSubject && (
           <button
             onClick={handleOpenAdd}
-            className="flex items-center justify-center gap-2 bg-[#3525cd] hover:bg-[#4f46e5] text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 cursor-pointer active:scale-95 transition-all shrink-0"
+            className="flex items-center justify-center gap-2 bg-[#9333ea] hover:bg-[#7e22ce] text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-purple-600/10 cursor-pointer active:scale-95 transition-all shrink-0"
           >
             <Plus className="w-4 h-4 text-white" />
             Add New Subject
@@ -272,7 +272,7 @@ export default function SubjectsView({
         <div className="space-y-6 animate-in duration-300 slide-in-from-left-4 fade-in">
           <button
             onClick={() => setSelectedSubject(null)}
-            className="flex items-center gap-2 text-xs font-bold text-[#3525cd] hover:text-[#4f46e5]"
+            className="flex items-center gap-2 text-xs font-bold text-[#9333ea] hover:text-[#7e22ce]"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Subjects Directory
@@ -280,7 +280,7 @@ export default function SubjectsView({
 
           <header className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-indigo-50 text-[#3525cd] flex items-center justify-center font-black">
+              <div className="w-12 h-12 rounded-xl bg-purple-50 text-[#9333ea] flex items-center justify-center font-black">
                 <BookOpen className="w-6 h-6" />
               </div>
               <div>
@@ -297,7 +297,7 @@ export default function SubjectsView({
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => onInputMarks(selectedSubject.name)}
-                className="flex items-center gap-1.5 px-3.5 py-2 bg-[#3525cd] hover:bg-[#4f46e5] text-white rounded-xl text-xs font-bold cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 px-3.5 py-2 bg-[#9333ea] hover:bg-[#7e22ce] text-white rounded-xl text-xs font-bold cursor-pointer transition-colors"
               >
                 <Plus className="w-3.5 h-3.5 text-white" />
                 Input Marks
@@ -323,17 +323,17 @@ export default function SubjectsView({
             {/* PERFORMANCE SNAPSHOT CARD */}
             <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 space-y-6">
               <div>
-                <span className="text-[10px] font-bold text-[#3525cd] tracking-widest uppercase">
+                <span className="text-[10px] font-bold text-[#9333ea] tracking-widest uppercase">
                   Academic Insights
                 </span>
                 <h4 className="text-base font-extrabold text-slate-900 mt-0.5">Performance Snapshot</h4>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100/50 text-center space-y-1">
-                  <TrendingUp className="w-5 h-5 text-[#3525cd] mx-auto" />
+                <div className="p-4 rounded-xl bg-purple-50/50 border border-purple-100/50 text-center space-y-1">
+                  <TrendingUp className="w-5 h-5 text-[#9333ea] mx-auto" />
                   <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide">Average Score</p>
-                  <p className="text-2xl font-black text-[#3525cd]">{getSubjectStats(selectedSubject).avgScore}%</p>
+                  <p className="text-2xl font-black text-[#9333ea]">{getSubjectStats(selectedSubject).avgScore}%</p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-emerald-50 text-center space-y-1">
@@ -355,7 +355,7 @@ export default function SubjectsView({
                 <h5 className="text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-3">Passing Status</h5>
                 <div className="flex justify-between text-xs font-semibold text-slate-500 mb-1.5">
                   <span>Enrolled Passing Rate</span>
-                  <span className="text-[#3525cd] font-bold">
+                  <span className="text-[#9333ea] font-bold">
                     {getSubjectStats(selectedSubject).totalStudentsInStreams > 0
                       ? Math.round((getSubjectStats(selectedSubject).passingStudentsCount / getSubjectStats(selectedSubject).totalStudentsInStreams) * 100)
                       : 94}%
@@ -363,7 +363,7 @@ export default function SubjectsView({
                 </div>
                 <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                   <div
-                    className="bg-[#3525cd] h-full rounded-full transition-all duration-700"
+                    className="bg-[#9333ea] h-full rounded-full transition-all duration-700"
                     style={{
                       width: `${getSubjectStats(selectedSubject).totalStudentsInStreams > 0
                         ? (getSubjectStats(selectedSubject).passingStudentsCount / getSubjectStats(selectedSubject).totalStudentsInStreams) * 100
@@ -468,17 +468,17 @@ export default function SubjectsView({
               <div
                 key={sub.id}
                 onClick={() => setSelectedSubject(sub)}
-                className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-[#3525cd]/30 transition-all cursor-pointer flex flex-col justify-between group min-h-[13rem] relative"
+                className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-[#9333ea]/30 transition-all cursor-pointer flex flex-col justify-between group min-h-[13rem] relative"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-start">
-                    <div className="w-10 h-10 bg-indigo-50 text-[#3525cd] rounded-xl flex items-center justify-center group-hover:bg-[#3525cd] group-hover:text-white transition-colors shrink-0">
+                    <div className="w-10 h-10 bg-purple-50 text-[#9333ea] rounded-xl flex items-center justify-center group-hover:bg-[#9333ea] group-hover:text-white transition-colors shrink-0">
                       <BookOpen className="w-5 h-5" />
                     </div>
                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
                         onClick={(e) => handleOpenEdit(sub, e)}
-                        className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-500 hover:text-[#3525cd]"
+                        className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-500 hover:text-[#9333ea]"
                         title="Edit Subject"
                       >
                         <Edit className="w-4 h-4" />
@@ -494,7 +494,7 @@ export default function SubjectsView({
                   </div>
 
                   <div>
-                    <h4 className="font-extrabold text-slate-900 group-hover:text-[#3525cd] transition-colors line-clamp-1 block text-sm">
+                    <h4 className="font-extrabold text-slate-900 group-hover:text-[#9333ea] transition-colors line-clamp-1 block text-sm">
                       {sub.name}
                     </h4>
                     <p className="text-[11px] font-semibold text-slate-400 mt-1 flex items-center gap-1 font-sans">
@@ -509,7 +509,7 @@ export default function SubjectsView({
                     {streamNames.map((n, i) => (
                       <span
                         key={i}
-                        className="px-2 py-0.5 bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-[#3525cd] rounded text-[10px] font-extrabold font-mono whitespace-nowrap"
+                        className="px-2 py-0.5 bg-slate-100 hover:bg-purple-50 text-slate-600 hover:text-[#9333ea] rounded text-[10px] font-extrabold font-mono whitespace-nowrap"
                       >
                         {n}
                       </span>
@@ -529,7 +529,7 @@ export default function SubjectsView({
           <div className="bg-white rounded-2xl w-full max-w-md border border-slate-200 shadow-2xl overflow-hidden scale-100 animate-in fade-in zoom-in-95 duration-200">
             <div className="p-5 border-b border-slate-100 flex justify-between items-center">
               <h3 className="font-extrabold text-slate-900 text-sm tracking-tight flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-[#3525cd]" />
+                <BookOpen className="w-4 h-4 text-[#9333ea]" />
                 {editingSubject ? 'Edit Subject Curricula' : 'Add Academic Subject'}
               </h3>
               <button
@@ -557,7 +557,7 @@ export default function SubjectsView({
                   placeholder="e.g. Theoretical Biology"
                   value={subjectName}
                   onChange={(e) => setSubjectName(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] focus:ring-4 focus:ring-indigo-100 text-xs outline-none transition-all font-semibold text-slate-800"
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] focus:ring-4 focus:ring-purple-100 text-xs outline-none transition-all font-semibold text-slate-800"
                 />
               </div>
 
@@ -569,7 +569,7 @@ export default function SubjectsView({
                   <select
                     value={selectedTeacherId}
                     onChange={(e) => setSelectedTeacherId(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] outline-none text-xs font-semibold text-slate-800"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] outline-none text-xs font-semibold text-slate-800"
                   >
                     <option value="">-- Choose Teacher --</option>
                     {teachers.map(t => (
@@ -587,7 +587,7 @@ export default function SubjectsView({
                     placeholder="e.g. Mrs. Rosalin Franklin"
                     value={teacherName}
                     onChange={(e) => setTeacherName(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#3525cd] focus:ring-4 focus:ring-indigo-100 text-xs outline-none transition-all font-semibold text-slate-800"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#9333ea] focus:ring-4 focus:ring-purple-100 text-xs outline-none transition-all font-semibold text-slate-800"
                     disabled
                   />
                 </div>
@@ -609,7 +609,7 @@ export default function SubjectsView({
                           key={str.id}
                           onClick={() => toggleStreamOption(str.id)}
                           className={`py-2 rounded-xl border text-xs font-black transition-all cursor-pointer text-center ${isSelected
-                              ? 'bg-[#3525cd] text-white border-transparent shadow shadow-indigo-600/30'
+                              ? 'bg-[#9333ea] text-white border-transparent shadow shadow-purple-600/30'
                               : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-600'
                             }`}
                         >
@@ -631,7 +631,7 @@ export default function SubjectsView({
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 cursor-pointer transition-all"
+                  className="flex-1 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] text-white rounded-xl text-xs font-bold shadow-md shadow-purple-600/10 cursor-pointer transition-all"
                 >
                   Save Subject
                 </button>

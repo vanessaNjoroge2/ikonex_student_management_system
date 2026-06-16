@@ -312,7 +312,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
     });
 
     return [
-      { name: 'Grade A Range', value: countA, color: '#3525cd' },
+      { name: 'Grade A Range', value: countA, color: '#9333ea' },
       { name: 'Grade B Range', value: countB, color: '#6366f1' },
       { name: 'Grade C Range', value: countC, color: '#fb923c' },
       { name: 'Grade D Range', value: countD, color: '#f59e0b' },
@@ -371,7 +371,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
       {/* Header controls pane */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <span className="text-[10px] font-bold text-[#3525cd] tracking-widest uppercase">
+          <span className="text-[10px] font-bold text-[#9333ea] tracking-widest uppercase">
             Official Academic Registries
           </span>
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 leading-tight">
@@ -385,7 +385,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
             onClick={() => setActiveTab('student_card')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
               activeTab === 'student_card'
-                ? 'bg-white text-[#3525cd] shadow-sm font-extrabold'
+                ? 'bg-white text-[#9333ea] shadow-sm font-extrabold'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -396,7 +396,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
             onClick={() => setActiveTab('class_summary')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
               activeTab === 'class_summary'
-                ? 'bg-white text-[#3525cd] shadow-sm font-extrabold'
+                ? 'bg-white text-[#9333ea] shadow-sm font-extrabold'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -407,7 +407,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
             onClick={() => setActiveTab('analytics')}
             className={`flex-1 sm:flex-initial px-4 py-2 font-bold text-xs rounded-lg transition-all cursor-pointer ${
               activeTab === 'analytics'
-                ? 'bg-white text-[#3525cd] shadow-sm font-extrabold'
+                ? 'bg-white text-[#9333ea] shadow-sm font-extrabold'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -430,7 +430,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
               {/* Filter card */}
               <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2.5">
-                  <Filter className="w-5 h-5 text-[#3525cd]" />
+                  <Filter className="w-5 h-5 text-[#9333ea]" />
                   <div>
                     <h3 className="font-extrabold text-slate-900 text-xs">Generate Student Report Transcript</h3>
                     <p className="text-[10px] text-slate-400 mt-0.5">Select any candidate to compile Q3 official grades report.</p>
@@ -468,7 +468,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                 {/* Official header of layout */}
                 <div className="p-8 bg-slate-50 border-b border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-[#3525cd] text-white rounded-2xl flex items-center justify-center font-black shadow-lg shadow-indigo-600/15">
+                    <div className="w-14 h-14 bg-[#9333ea] text-white rounded-2xl flex items-center justify-center font-black shadow-lg shadow-purple-600/15">
                       IK
                     </div>
                     <div>
@@ -480,7 +480,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                   </div>
 
                   <div className="text-left md:text-right space-y-1">
-                    <span className="px-3 py-1 bg-[#eaedff] text-[#3525cd] text-[9px] font-black uppercase tracking-wider rounded-full">
+                    <span className="px-3 py-1 bg-[#f3e8ff] text-[#9333ea] text-[9px] font-black uppercase tracking-wider rounded-full">
                       Official Document card
                     </span>
                     <p className="text-[10px] text-slate-400 font-medium pt-1 font-mono">Generated: 2026-06-04</p>
@@ -502,13 +502,13 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                     </div>
                     <div>
                       <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Assigned Stream</p>
-                      <p className="text-xs font-black text-[#3525cd] pt-0.5">
+                      <p className="text-xs font-black text-[#9333ea] pt-0.5">
                         {streams.find(s => s.id === currentStudent.streamId)?.name || 'Stream A'}
                       </p>
                     </div>
                     <div>
                       <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Overall Class Rank</p>
-                      <p className="text-xs font-black text-indigo-700 pt-0.5 font-mono">
+                      <p className="text-xs font-black text-purple-700 pt-0.5 font-mono">
                         {currentStudent.overallPosition ? `#${currentStudent.overallPosition}` : 'N/A'}
                       </p>
                     </div>
@@ -548,7 +548,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                                 <td className="p-3 text-center font-mono font-medium">{g.ca}</td>
                                 <td className="p-3 text-center font-mono font-medium">{g.exam}</td>
                                 <td className="p-3 text-center font-black font-mono text-slate-900">{g.total}</td>
-                                <td className="p-3 text-center font-bold text-[#3525cd] font-mono">
+                                <td className="p-3 text-center font-bold text-[#9333ea] font-mono">
                                   {g.subjectPosition ? `#${g.subjectPosition}` : 'N/A'}
                                 </td>
                                 <td className="p-3 text-right">
@@ -576,7 +576,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                             <PolarGrid stroke="#e2e8f0" />
                             <PolarAngleAxis dataKey="subject" stroke="#64748b" fontSize={8} fontWeight="bold" />
                             <PolarRadiusAxis domain={[0, 100]} stroke="#94a3b8" fontSize={7} />
-                            <Radar name="Scoring" dataKey="Score %" stroke="#3525cd" fill="#3525cd" fillOpacity={0.15} />
+                            <Radar name="Scoring" dataKey="Score %" stroke="#9333ea" fill="#9333ea" fillOpacity={0.15} />
                           </RadarChart>
                         </ResponsiveContainer>
                       </div>
@@ -604,7 +604,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                     <button
                       onClick={handleDownloadStudentPDF}
                       disabled={isDownloading}
-                      className="flex-1 sm:flex-initial px-4 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] disabled:bg-slate-300 text-white rounded-xl text-xs font-bold shadow shadow-indigo-600/10 cursor-pointer transition flex items-center justify-center gap-1.5"
+                      className="flex-1 sm:flex-initial px-4 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] disabled:bg-slate-300 text-white rounded-xl text-xs font-bold shadow shadow-purple-600/10 cursor-pointer transition flex items-center justify-center gap-1.5"
                     >
                       <Download className="w-3.5 h-3.5" />
                       {isDownloading ? 'Generating...' : 'Export To PDF'}
@@ -624,7 +624,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
               {/* Filter controls bar for stream comparison */}
               <div className="bg-white rounded-2xl border border-[#e2e8f0]/80 p-5 shadow-sm space-y-4">
                 <div className="flex items-center gap-2">
-                  <SlidersHorizontal className="w-5 h-5 text-[#3525cd]" />
+                  <SlidersHorizontal className="w-5 h-5 text-[#9333ea]" />
                   <h3 className="font-extrabold text-slate-900 text-xs uppercase tracking-wider">Class Report Filters</h3>
                 </div>
 
@@ -665,7 +665,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                   <p className="text-sm font-black text-slate-900 pt-1 line-clamp-1">
                     {getStreamPerformanceHighlights().topName}
                   </p>
-                  <span className="text-[10px] text-[#3525cd] font-semibold flex items-center gap-1 mt-1">
+                  <span className="text-[10px] text-[#9333ea] font-semibold flex items-center gap-1 mt-1">
                     Highest GPA Candidate <ArrowUpRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -708,7 +708,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                         <XAxis dataKey="subject" stroke="#94a3b8" fontSize={9} fontWeight="bold" />
                         <YAxis stroke="#94a3b8" fontSize={9} fontWeight="bold" tickFormatter={(v) => `${v}%`} />
                         <Tooltip formatter={(value) => [`${value}%`]} />
-                        <Bar dataKey="Group Average %" fill="#3525cd" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="Group Average %" fill="#9333ea" radius={[4, 4, 0, 0]} />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -730,7 +730,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                         <Tooltip formatter={(value) => [`${value}%`]} />
                         <Legend wrapperStyle={{ fontSize: '9px', fontWeight: 'bold' }} />
                         {streams.map((str, idx) => {
-                          const colors = ["#3525cd", "#6366f1", "#fb923c", "#f59e0b"];
+                          const colors = ["#9333ea", "#6366f1", "#fb923c", "#f59e0b"];
                           return (
                             <Bar 
                               key={str.id}
@@ -755,7 +755,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                 <button
                   onClick={handleDownloadClassPDF}
                   disabled={isDownloadingClass}
-                  className="w-full sm:w-auto px-5 py-2.5 bg-[#3525cd] hover:bg-[#4f46e5] disabled:bg-slate-300 text-white rounded-xl text-xs font-black shadow transition flex items-center justify-center gap-1 cursor-pointer active:scale-95"
+                  className="w-full sm:w-auto px-5 py-2.5 bg-[#9333ea] hover:bg-[#7e22ce] disabled:bg-slate-300 text-white rounded-xl text-xs font-black shadow transition flex items-center justify-center gap-1 cursor-pointer active:scale-95"
                 >
                   <Download className="w-4 h-4" />
                   {isDownloadingClass ? 'Generating...' : 'Download Class Report'}
@@ -815,7 +815,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                         <XAxis dataKey="name" stroke="#94a3b8" fontSize={10} fontWeight="black" />
                         <YAxis stroke="#94a3b8" fontSize={10} fontWeight="black" tickFormatter={(v) => `${v}%`} />
                         <Tooltip formatter={(value) => [`${value}%`]} />
-                        <Line type="monotone" dataKey="Class Average %" stroke="#3525cd" strokeWidth={4} activeDot={{ r: 7 }} />
+                        <Line type="monotone" dataKey="Class Average %" stroke="#9333ea" strokeWidth={4} activeDot={{ r: 7 }} />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -854,7 +854,7 @@ export default function ReportsView({ students, streams, subjects, assessments, 
                             </td>
                             <td className="p-3 text-slate-600 font-bold">{item.streamName}</td>
                             <td className="p-3 text-center text-slate-400 font-mono">{item.scorePct}</td>
-                            <td className="p-3 text-right text-[#3525cd] font-black font-mono text-sm">{item.kcpeScore} / 500</td>
+                            <td className="p-3 text-right text-[#9333ea] font-black font-mono text-sm">{item.kcpeScore} / 500</td>
                           </tr>
                         );
                       })}

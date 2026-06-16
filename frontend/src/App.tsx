@@ -16,7 +16,7 @@ import SubjectsView from './components/SubjectsView';
 import SettingsView from './components/SettingsView';
 import LoginView from './components/LoginView';
 import RegisterView from './components/RegisterView';
-import LandingView from './components/LandingView';
+import LandingPage from './components/LandingPage';
 import VerifyEmailView from './components/VerifyEmailView';
 import VerifyLoginView from './components/VerifyLoginView';
 import { RouterProvider, useRouter, useNavigate } from './components/Router';
@@ -24,11 +24,21 @@ import AuthGuard from './components/AuthGuard';
 import AdminLoginView from './components/AdminLoginView';
 import AccountsView from './components/AccountsView';
 
+import { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import type { Engine } from "@tsparticles/engine";
+
+const initParticles = async (engine: Engine): Promise<void> => {
+  await loadSlim(engine);
+};
+
 export default function App() {
   return (
-    <RouterProvider>
-      <MainApp />
-    </RouterProvider>
+    <ParticlesProvider init={initParticles}>
+      <RouterProvider>
+        <MainApp />
+      </RouterProvider>
+    </ParticlesProvider>
   );
 }
 
@@ -601,7 +611,7 @@ function MainApp() {
   };
 
   if (path === '/') {
-    return <LandingView />;
+    return <LandingPage />;
   }
 
   if (path === '/admin-login') {
@@ -648,8 +658,8 @@ function MainApp() {
       <aside className="hidden lg:flex flex-col h-screen sticky top-0 p-6 w-[260px] border-r border-slate-200/80 bg-white shadow-sm shrink-0 justify-between">
         <div className="space-y-6">
           <div className="px-2 space-y-1">
-            <h1 className="text-xl font-extrabold text-[#3525cd] tracking-tight flex items-center gap-2">
-              <GraduationCap className="w-6 h-6 stroke-[1.8] text-[#3525cd]" />
+            <h1 className="text-xl font-extrabold text-[#9333ea] tracking-tight flex items-center gap-2">
+              <GraduationCap className="w-6 h-6 stroke-[1.8] text-[#9333ea]" />
               Ikonex Academy
             </h1>
             <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 pl-8">
@@ -662,11 +672,11 @@ function MainApp() {
               onClick={() => setActiveTab('home')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                 activeTab === 'home'
-                  ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                  ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
-              <LayoutDashboard className="w-4 h-4 text-[#3525cd]" />
+              <LayoutDashboard className="w-4 h-4 text-[#9333ea]" />
               <span>Home</span>
             </button>
             
@@ -674,11 +684,11 @@ function MainApp() {
               onClick={() => handleTabNavigation('students')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                 activeTab === 'students'
-                  ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                  ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
-              <Users className="w-4 h-4 text-[#3525cd]" />
+              <Users className="w-4 h-4 text-[#9333ea]" />
               <span>Students</span>
             </button>
 
@@ -686,11 +696,11 @@ function MainApp() {
               onClick={() => setActiveTab('streams')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                 activeTab === 'streams'
-                  ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                  ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
-              <Waves className="w-4 h-4 text-[#3525cd]" />
+              <Waves className="w-4 h-4 text-[#9333ea]" />
               <span>Streams</span>
             </button>
 
@@ -698,11 +708,11 @@ function MainApp() {
               onClick={() => setActiveTab('scores')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                 activeTab === 'scores'
-                  ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                  ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
-              <BookOpen className="w-4 h-4 text-[#3525cd]" />
+              <BookOpen className="w-4 h-4 text-[#9333ea]" />
               <span>Scores</span>
             </button>
 
@@ -710,11 +720,11 @@ function MainApp() {
               onClick={() => setActiveTab('reports')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                 activeTab === 'reports'
-                  ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                  ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
-              <GraduationCap className="w-4 h-4 text-[#3525cd]" />
+              <GraduationCap className="w-4 h-4 text-[#9333ea]" />
               <span>Reports</span>
             </button>
 
@@ -723,7 +733,7 @@ function MainApp() {
               onClick={() => setActiveTab('subjects')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                 activeTab === 'subjects'
-                  ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                  ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
@@ -737,11 +747,11 @@ function MainApp() {
                 onClick={() => setActiveTab('accounts')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                   activeTab === 'accounts'
-                    ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                    ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                     : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
                 }`}
               >
-                <Users className="w-4 h-4 text-[#3525cd]" />
+                <Users className="w-4 h-4 text-[#9333ea]" />
                 <span>Manage Accounts</span>
               </button>
             )}
@@ -751,7 +761,7 @@ function MainApp() {
               onClick={() => setActiveTab('settings')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-xs tracking-tight cursor-pointer ${
                 activeTab === 'settings'
-                  ? 'bg-[#eaedff] text-[#3525cd] font-black'
+                  ? 'bg-[#f3e8ff] text-[#9333ea] font-black'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
@@ -771,7 +781,7 @@ function MainApp() {
         </div>
 
         <div className="pt-4 border-t border-slate-200/65 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-[#3525cd] font-extrabold text-xs">
+          <div className="w-10 h-10 rounded-full bg-purple-50 border border-purple-100 flex items-center justify-center text-[#9333ea] font-extrabold text-xs">
             {user?.name ? user.name.split(' ').map((n: string) => n[0]).join('') : 'AD'}
           </div>
           <div>
@@ -784,7 +794,7 @@ function MainApp() {
       {/* MOBILE APPLICATION HEADER BAR */}
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-6 py-4 flex justify-between items-center lg:hidden">
         <div className="flex items-center gap-2">
-          <GraduationCap className="w-6 h-6 text-[#3525cd]" />
+          <GraduationCap className="w-6 h-6 text-[#9333ea]" />
           <h1 className="text-lg font-black text-slate-900 tracking-tight">
             Ikonex Academy
           </h1>
@@ -792,14 +802,14 @@ function MainApp() {
         <div className="flex items-center gap-3">
           <button 
             onClick={() => setIsNotificationPaneOpen(true)}
-            className="p-1 text-slate-600 hover:text-[#3525cd] relative"
+            className="p-1 text-slate-600 hover:text-[#9333ea] relative"
           >
             <Bell className="w-5 h-5" />
             <span className="absolute top-0 right-0 w-2 h-2 bg-rose-500 rounded-full" />
           </button>
           <div 
             onClick={() => setIsProfileOpen(!isProfileOpen)}
-            className="w-8 h-8 rounded-full overflow-hidden border border-slate-200 cursor-pointer flex items-center justify-center bg-indigo-550 text-white bg-indigo-650 text-xs font-bold"
+            className="w-8 h-8 rounded-full overflow-hidden border border-slate-200 cursor-pointer flex items-center justify-center bg-purple-550 text-white bg-purple-650 text-xs font-bold"
           >
             {user?.name ? user.name.split(' ').map((n: string) => n[0]).join('') : 'AD'}
           </div>
@@ -814,7 +824,7 @@ function MainApp() {
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
             <span>Official Registries</span>
             <ChevronRight className="w-3.5 h-3.5 text-slate-300" />
-            <span className="text-[#3525cd] font-bold capitalize">{activeTab} tab active</span>
+            <span className="text-[#9333ea] font-bold capitalize">{activeTab} tab active</span>
           </div>
 
           <div className="flex items-center gap-4 relative">
@@ -834,7 +844,7 @@ function MainApp() {
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
                 className="flex items-center gap-2.5 p-1.5 rounded-full hover:bg-slate-50 transition cursor-pointer"
               >
-                <div className="w-8 h-8 rounded-full bg-[#eaedff] text-[#3525cd] font-bold text-xs flex items-center justify-center border border-[#3525cd]/10">
+                <div className="w-8 h-8 rounded-full bg-[#f3e8ff] text-[#9333ea] font-bold text-xs flex items-center justify-center border border-[#9333ea]/10">
                   {user?.name ? user.name.split(' ').map((n: string) => n[0]).join('') : 'AD'}
                 </div>
                 <ChevronDown className="w-4 h-4 text-slate-500" />
@@ -844,7 +854,7 @@ function MainApp() {
                 <div className="absolute right-0 mt-2 w-52 bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden py-1.5 z-40 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="px-4 py-2 border-b border-slate-100">
                     <p className="text-xs font-bold text-slate-900 leading-none">{user?.name || 'John Miller'}</p>
-                    <p className="text-[9px] text-[#3525cd] font-bold font-mono mt-1 capitalize">{user?.role ? `${user.role.toLowerCase()} Account` : 'Admin Account'}</p>
+                    <p className="text-[9px] text-[#9333ea] font-bold font-mono mt-1 capitalize">{user?.role ? `${user.role.toLowerCase()} Account` : 'Admin Account'}</p>
                   </div>
 
                   <button
@@ -990,7 +1000,7 @@ function MainApp() {
         <button 
           onClick={() => setActiveTab('home')}
           className={`flex flex-col items-center justify-center flex-1 h-full font-medium transition-all ${
-            activeTab === 'home' ? 'text-[#3525cd]' : 'text-slate-400'
+            activeTab === 'home' ? 'text-[#9333ea]' : 'text-slate-400'
           }`}
         >
           <HomeIcon className="w-5 h-5" />
@@ -1000,7 +1010,7 @@ function MainApp() {
         <button 
           onClick={() => handleTabNavigation('students')}
           className={`flex flex-col items-center justify-center flex-1 h-full font-medium transition-all ${
-            activeTab === 'students' ? 'text-[#3525cd]' : 'text-slate-400'
+            activeTab === 'students' ? 'text-[#9333ea]' : 'text-slate-400'
           }`}
         >
           <Users className="w-5 h-5" />
@@ -1010,7 +1020,7 @@ function MainApp() {
         <button 
           onClick={() => setActiveTab('streams')}
           className={`flex flex-col items-center justify-center flex-1 h-full font-medium transition-all ${
-            activeTab === 'streams' ? 'text-[#3525cd]' : 'text-slate-400'
+            activeTab === 'streams' ? 'text-[#9333ea]' : 'text-slate-400'
           }`}
         >
           <Waves className="w-5 h-5" />
@@ -1020,7 +1030,7 @@ function MainApp() {
         <button 
           onClick={() => setActiveTab('scores')}
           className={`flex flex-col items-center justify-center flex-1 h-full font-medium transition-all ${
-            activeTab === 'scores' ? 'text-[#3525cd]' : 'text-slate-400'
+            activeTab === 'scores' ? 'text-[#9333ea]' : 'text-slate-400'
           }`}
         >
           <BookOpen className="w-5 h-5" />
@@ -1030,7 +1040,7 @@ function MainApp() {
         <button 
           onClick={() => setActiveTab('reports')}
           className={`flex flex-col items-center justify-center flex-1 h-full font-medium transition-all ${
-            activeTab === 'reports' ? 'text-[#3525cd]' : 'text-slate-400'
+            activeTab === 'reports' ? 'text-[#9333ea]' : 'text-slate-400'
           }`}
         >
           <GraduationCap className="w-5 h-5" />
@@ -1053,7 +1063,7 @@ function MainApp() {
           <button 
             onClick={() => setActiveTab('accounts')}
             className={`flex flex-col items-center justify-center flex-1 h-full font-medium transition-all ${
-              activeTab === 'accounts' ? 'text-[#3525cd]' : 'text-slate-400'
+              activeTab === 'accounts' ? 'text-[#9333ea]' : 'text-slate-400'
             }`}
           >
             <Users className="w-5 h-5" />
@@ -1101,7 +1111,7 @@ function MainApp() {
           <div className="bg-white w-full max-w-sm h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
             <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
               <h3 className="font-extrabold text-slate-900 text-sm tracking-tight flex items-center gap-2">
-                <Bell className="w-4 h-4 text-[#3525cd]" />
+                <Bell className="w-4 h-4 text-[#9333ea]" />
                 Recent System Log Alerts
               </h3>
               <button 
@@ -1115,10 +1125,10 @@ function MainApp() {
             {/* List */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
               {activities.map(act => (
-                <div key={act.id} className="p-4 bg-slate-50 hover:bg-indigo-50/20 border border-slate-100 rounded-2xl transition space-y-1">
+                <div key={act.id} className="p-4 bg-slate-50 hover:bg-purple-50/20 border border-slate-100 rounded-2xl transition space-y-1">
                   <div className="flex justify-between items-start">
                     <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider ${
-                      act.type === 'enrollment' ? 'bg-emerald-50 text-emerald-700' : 'bg-indigo-50 text-[#3525cd]'
+                      act.type === 'enrollment' ? 'bg-emerald-50 text-emerald-700' : 'bg-purple-50 text-[#9333ea]'
                     }`}>
                       {act.type}
                     </span>
@@ -1133,7 +1143,7 @@ function MainApp() {
             <div className="p-4 border-t border-slate-100/80 bg-slate-50/60 flex text-center">
               <button 
                 onClick={() => setIsNotificationPaneOpen(false)}
-                className="w-full py-2.5 text-xs text-[#3525cd] font-bold"
+                className="w-full py-2.5 text-xs text-[#9333ea] font-bold"
               >
                 Close Logs Panel
               </button>
