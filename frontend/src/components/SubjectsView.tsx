@@ -77,8 +77,8 @@ export default function SubjectsView({
   const handleOpenAdd = () => {
     setEditingSubject(null);
     setSubjectName('');
-    setTeacherName('');
-    setSelectedTeacherId('');
+    setTeacherName(currentUser?.role !== 'ADMIN' ? (currentUser?.name || '') : '');
+    setSelectedTeacherId(currentUser?.role !== 'ADMIN' ? (currentUser?.id || '') : '');
     setSelectedStreams([]);
     setFormError('');
     setIsFormOpen(true);
