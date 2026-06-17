@@ -62,6 +62,16 @@ export function Footer() {
                 {footer.link6}
               </a>
             </li>
+            <li>
+              <a href="#privacy" className="canva-text text-sm text-gray-600 hover:text-purple-600 no-underline font-sans transition-colors">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#terms" className="canva-text text-sm text-gray-600 hover:text-purple-600 no-underline font-sans transition-colors">
+                Terms of Service
+              </a>
+            </li>
           </ul>
         </div>
         <div>

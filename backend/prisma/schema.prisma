@@ -52,6 +52,8 @@ model Stream {
   teacher        prismaUser?     @relation(fields: [teacherId], references: [id], onDelete: SetNull)
   students       Student[]
   subjectStreams SubjectStream[]
+
+  @@index([teacherId])
 }
 
 model Student {
@@ -87,6 +89,8 @@ model Student {
   @@index([formLevel])
   @@index([stream])
   @@index([enrollmentStatus])
+  @@index([streamId])
+  @@index([teacherId])
 }
 
 model Subject {
@@ -99,6 +103,8 @@ model Subject {
   teacher        prismaUser      @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   subjectStreams SubjectStream[]
   scores         Score[]
+
+  @@index([teacherId])
 }
 
 model SubjectStream {
@@ -128,6 +134,9 @@ model Score {
   teacher   prismaUser @relation(fields: [teacherId], references: [id], onDelete: Cascade)
 
   @@unique([studentId, subjectId, examType, term, year])
+  @@index([studentId])
+  @@index([subjectId])
+  @@index([teacherId])
 }
 
 model LoginActivity {

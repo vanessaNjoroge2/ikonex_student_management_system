@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { errorHandler } from './middleware/errorHandler';
+import { rateLimiter } from './middleware/rateLimiter';
 
 import authRouter from './modules/auth/auth.routes';
 import studentsRouter from './modules/students/students.routes';
@@ -55,7 +56,7 @@ app.get('/health', (req, res) => {
 });
 
 // Mounting API routers
-app.use('/api/auth', authRouter);
+app.use('/api/auth', rateLimiter(15 * 60 * 1000, 100), authRouter); // 100 requests per 15 minutes limit per IP
 app.use('/api/students', studentsRouter);
 app.use('/api/streams', streamsRouter);
 app.use('/api/subjects', subjectsRouter);

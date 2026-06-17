@@ -41,6 +41,33 @@ export const refreshSchema = z.object({
   }),
 });
 
+export const sendVerificationSchema = z.object({
+  body: z.object({
+    email: z.string().email('Invalid email address'),
+  }),
+});
+
+export const verifyEmailSchema = z.object({
+  body: z.object({
+    email: z.string().email('Invalid email address'),
+    code: z.string().length(6, 'Verification code must be exactly 6 digits'),
+  }),
+});
+
+export const sendLoginCodeSchema = z.object({
+  body: z.object({
+    email: z.string().email('Invalid email address'),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
+  }),
+});
+
+export const verifyLoginCodeSchema = z.object({
+  body: z.object({
+    email: z.string().email('Invalid email address'),
+    code: z.string().length(6, '2FA code must be exactly 6 digits'),
+  }),
+});
+
 export class AuthController {
   static async login(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
